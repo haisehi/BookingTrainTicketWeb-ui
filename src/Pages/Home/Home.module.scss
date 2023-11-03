@@ -1,6 +1,6 @@
 .wrapper{
     width: 100%;
-    height: 800px;
+    height: auto;
 }
 .wrapper_form{
     height: 350px;
@@ -29,7 +29,7 @@
     margin: 10px 0;
 }
 .wrapper_form-input2{
-    width: 61%;
+    width: 50%;
     height: 50px;
 }
 .wrapper_form-inputSelect{
@@ -40,6 +40,7 @@
 .wrapper_form-select2{
     display: flex;
     width: 100%;
+    margin-right: 250px;
 }
 .form_labelInput{
     margin: 10px 5px 0;
@@ -70,10 +71,10 @@
 
 .wrapper_form-select3{
     display: flex;
-    width: 60%;
-    justify-content: space-evenly;
-    margin-left: 20%;
-    margin-right: 20%;
+    width: 100%;
+    margin-left: 70%;
+    margin-right: 70%;
+    transform: translateX(-50%)
 }
 .form_chexbox{
 
@@ -88,3 +89,63 @@
     border-radius: 50%;
     padding: 0 10px;
 }
+//result ticket
+.wrapper_results {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-gap: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    
+    z-index: 1;
+  }
+  
+  .results_ticket {
+    border: 1px solid var(--border-btn); /* Màu xanh chủ đạo */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 43%);
+    background-image: linear-gradient(to bottom, #5a79b675, rgb(0 0 0 / 60%)), url(https://th.bing.com/th/id/OIP.0UQaGVOAYyykB5EI83s8YwHaF7?pid=ImgDet&rs=1);
+    background-size: contain;
+    background-repeat: no-repeat;
+  
+    .title_result {
+      font-weight: bold;
+      color: #caf4ff; /* Màu xanh chủ đạo */
+      margin: 10px 10px 0 0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+  
+    .result_item {
+      margin: 10px 5px 0 0;
+      color: var(--white-color); /* Màu văn bản chính */
+      font-size: 17px;
+      padding: 0 5 0 0;
+      font-weight: 600;
+    }
+  
+    .button_result {
+      background-color: var(--border-btn); /* Màu nền xanh chủ đạo */
+      color: #fff; /* Màu văn bản trắng */
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+  
+      &:hover {
+        background-color:var(--btn-header); /* Màu nền xanh nhạt khi hover */
+      }
+    }
+    .row{
+        display: flex;
+    }
+    .row_item{
+        
+    }
+  }
+  

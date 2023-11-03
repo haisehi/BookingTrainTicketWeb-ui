@@ -77,6 +77,8 @@ function Home() {
                         return: ticket.return,
                         timeGodeparture: ticket.timeGodeparture,
                         timeTodeparture: ticket.timeTodeparture,
+                        timeGoreturn: ticket.timeGoreturn,
+                        timeToreturn: ticket.timeToreturn,
                         ticketType: ticket.ticketType,
                         price: ticket.price,
                         numberChair: ticket.numberChair,
@@ -175,90 +177,81 @@ function Home() {
                         <div className={cx('wrapper_form-select')}>
                             <div className={cx('wrapper_form-select2')}>
                                 <div className={cx('form_labelInput')}>
-                                    <label className={cx('form_label')}>
-                                        Time go (Departure)
-                                    </label>
-                                    <select type='' name='' className={cx('form_input')}  >
-                                        <option>All times</option>
-                                        <option>0h to 12h</option>
-                                        <option>12h to 18h</option>
-                                        <option>18h to 23h59</option>
-                                    </select>
+                                    <label className={cx('form_chexbox-lable')}>One way</label>
+                                    <input type='checkbox' className={cx('chexbox')} id='OneWay' />
                                 </div>
                                 <div className={cx('form_labelInput')}>
-                                    <label className={cx('form_label')}>
-                                        Time to (Departure)
-                                    </label>
-                                    <select type='' name='' className={cx('form_input')}  >
-                                        <option>All times</option>
-                                        <option>0h to 12h</option>
-                                        <option>12h to 18h</option>
-                                        <option>18h to 23h59</option>
-                                    </select>
+                                    <label className={cx('form_chexbox-lable')}>Round trip</label>
+                                    <input type='checkbox' className={cx('chexbox')} id='roundTrip' />
                                 </div>
                             </div>
-                            <div className={cx('wrapper_form-select2')}>
-                                <div className={cx('form_labelInput')}>
-                                    <label className={cx('form_label')}>
-                                        Time go (Return)
-                                    </label>
-                                    <select type='' name='' className={cx('form_input')}  >
-                                        <option>All times</option>
-                                        <option>0h to 12h</option>
-                                        <option>12h to 18h</option>
-                                        <option>18h to 23h59</option>
-                                    </select>
-                                </div>                    <div className={cx('form_labelInput')}>
-                                    <label className={cx('form_label')}>
-                                        Time to (Return)
-                                    </label>
-                                    <select type='' name='' className={cx('form_input')}  >
-                                        <option>All times</option>
-                                        <option>0h to 12h</option>
-                                        <option>12h to 18h</option>
-                                        <option>18h to 23h59</option>
-                                    </select>
-                                </div>
+                            <div className={cx('wrapper_form-select3')}>
+                                    <Button text href='' >Search</Button>
                             </div>
                         </div>
                     </div>
-                    <div className={cx('wrapper_form-select3')}>
-                        <Button text href='' >Search</Button>
-                        <div className={cx('form_chexbox')}>
-                            <label className={cx('form_chexbox-lable')}>One way</label>
-                            <input type='checkbox' className={cx('chexbox')} id='OneWay' />
-                        </div>
-                        <div className={cx('form_chexbox')}>
-                            <label className={cx('form_chexbox-lable')}>Round trip</label>
-                            <input type='checkbox' className={cx('chexbox')} id='roundTrip' />
-                        </div>
-                    </div>
+
+
                 </form>
-            </div>
+            </div >
             {/* test dữ liệu */}
             {/* Hiển thị kết quả tìm kiếm ở đây */}
 
-            {searchResult.map((result, index) => (
-                <div key={index}>
-                    {/* Hiển thị thông tin từ kết quả tìm kiếm ở đây */}
-                    <div>{result.from}</div>
-                    <div>{result.to}</div>
-                    <div>{result.departure}</div>
-                    <div>{result.return}</div>
-                    <div>{result.timeGodeparture}</div>
-                    <div>{result.timeTodeparture}</div>
-                    <div>{result.timeGoreturn}</div>
-                    <div>{result.timeToreturn}</div>
-                    <div>{result.ticketType}</div>
-                    <div>{result.price} VND</div>
-                    <div>{result.numberChair}</div>
-                    <div>{result.state ? "True" : "False"}</div>
-                    <div>{result.kind}</div>
-                    <div>{findRoomID(result.rooms)}</div>
+            <div className={cx('wrapper_results')}>
+                {searchResult.map((result, index) => (
+                    <div key={index} className={cx('results_ticket')}>
+                        <div className={cx('result_item')}>{findRoomID(result.rooms)}</div>
+                        <div className={cx('row')}>
+                            <h4 className={cx('title_result')}>From</h4>
+                            <div className={cx('result_item')}>{result.from}</div>
+                            <h4 className={cx('title_result')}>To</h4>
+                            <div className={cx('result_item')}>{result.to}</div>
+                        </div>
+                        <div className={cx('row')}>
+                            <h4 className={cx('title_result')}>departure</h4>
+                            <div className={cx('result_item')}>{result.departure}</div>
+                            <h4 className={cx('title_result')}>return</h4>
+                            <div className={cx('result_item')}>{result.return === "" ? "..." : result.return}</div>
+                        </div>
+                        <div className={cx('row')}>
+                            <div className={cx('row_item')}>
+                                <h4 className={cx('title_result')}>timeGodeparture</h4>
+                                <div className={cx('result_item')}>{result.timeGodeparture} hours</div>
+                                <h4 className={cx('title_result')}>timeTodeparture</h4>
+                                <div className={cx('result_item')}>{result.timeTodeparture} hours</div>
+                            </div>
+                            <div className={cx('row_item')}>
+                                <h4 className={cx('title_result')}>timeGoreturn</h4>
+                                <div className={cx('result_item')}>{result.timeGoreturn === "" ? "..." : `${result.timeGoreturn} hours`}</div>
+                                <h4 className={cx('title_result')}>timeToreturn</h4>
+                                <div className={cx('result_item')}>{result.timeToreturn === "" ? "..." : `${result.timeToreturn} hours`} </div>
+                            </div>
+                        </div>
+                        <div className={cx('row')}>
+                            <h4 className={cx('title_result')}>ticketType</h4>
+                            <div className={cx('result_item')}>{result.ticketType}</div>
+                            <h4 className={cx('title_result')}>numberChair</h4>
+                            <div className={cx('result_item')}>{result.numberChair}</div>
+                        </div>
+                        <div className={cx('row')}>
+                            <h4 className={cx('title_result')}>kind</h4>
+                            <div className={cx('result_item')}>{result.kind}</div>
+                        </div>
+                        <div className={cx('row')}>
+                            <h4 className={cx('title_result')}>price</h4>
+                            <div className={cx('result_item')}>{result.price} VND</div>
+                            <h4 className={cx('title_result')}>state</h4>
+                            <div className={cx('result_item')}>{result.state ? "booked" : "still empty"}</div>
+                        </div>
 
-                </div>
-            ))}
-        </div>
+
+                        <button className={cx('button_result')}>Add to cart</button>
+                    </div>
+                ))
+                }
+            </div>
+
+        </div >
     );
 }
 
