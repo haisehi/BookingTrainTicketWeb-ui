@@ -1,135 +1,162 @@
-.wrapper{
+.wrapper {
     width: 100%;
     height: auto;
-}
-.wrapper_form{
-    height: 350px;
+  }
+
+  .wrapper_form-bg {
+    padding: 200px;
     width: 100%;
+    position: relative;
+    background-image: url('https://d13jio720g7qcs.cloudfront.net/images/guides/origin/64f0582f06b95.jpg'); /* Thay đổi đường dẫn này thành đường dẫn của hình ảnh bạn muốn sử dụng */
+    background-size: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ kích thước của phần tử */
+    background-position: center; /* Hiển thị hình ảnh ở giữa phần tử */
+    height: 450px;
+  }
+  
+  .wrapper_form {
+    position: absolute;
+    top: 15%;
+    right: 5%;
+    height: 280px;
+    width: 40%;
     background-color: var(--bg-form);
     border-radius: 10px 10px 60px 60px;
-    animation: slide 0.6s linear ;
-}
-.form_title{
-    margin: 230px 0 50px;
+    animation: slide 0.6s linear;
+  }
+  
+  .form_title {
     color: var(--white-color);
     text-align: center;
-}
-.form{
-    height: 330px;
+  }
+  
+  .form {
     width: 100%;
-
     padding: 0 20px;
     border-radius: 50px;
-}
-.wrapper_form-input{
+  }
+  
+  .wrapper_form-input {
     display: flex;
     height: 50px;
     width: 100%;
     justify-content: space-between;
     margin: 10px 0;
-}
-.wrapper_form-input2{
+  }
+  
+  .wrapper_form-input2 {
     width: 50%;
     height: 50px;
-}
-.wrapper_form-inputSelect{
+  }
+  
+  .wrapper_form-inputSelect {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
-}
-.wrapper_form-select2{
+  }
+  
+  .wrapper_form-select2 {
     display: flex;
     width: 100%;
     margin-right: 250px;
-}
-.form_labelInput{
+  }
+  
+  .form_labelInput {
     margin: 10px 5px 0;
     width: 98%;
-}
-.form_label{
+  }
+  
+  .form_label {
     width: 100%;
     font-size: 16px;
     color: var(--white-color);
-}
-.form_input{
+  }
+  
+  .form_input {
     height: 75%;
     width: 100%;
     font-size: var(--font-size);
     border: 0;
     border-radius: 20px;
     padding: 0 10px;
-}
-
-@keyframes slide{
-    from{
-        transform: translateY(-100px);
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateY(-100px);
     }
-    to{
-        transform: translateY(0px);
+    to {
+      transform: translateY(0px);
     }
-}
-
-.wrapper_form-select3{
+  }
+  
+  .wrapper_form-select3 {
     display: flex;
     width: 100%;
     margin-left: 70%;
     margin-right: 70%;
-    transform: translateX(-50%)
-}
-.form_chexbox{
-
-}
-.form_chexbox-lable{
+    transform: translateX(-50%);
+  }
+  
+  .form_chexbox {
+  }
+  
+  .form_chexbox-lable {
     width: 100%;
     font-size: 16px;
     color: var(--white-color);
-}
-.chexbox{
+  }
+  
+  .chexbox {
     font-size: var(--font-size);
     border-radius: 50%;
     padding: 0 10px;
-}
-//result ticket
-.wrapper_results {
+  }
+  
+  .wrapper_results {
     margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(3, 2fr);
     grid-gap: 10px;
-    margin-left:auto;
-    margin-right:auto;
-    
+    margin-left: 100px;
+    margin-right: 100px;
     z-index: 1;
   }
   
   .results_ticket {
-    border: 1px solid var(--border-btn); /* Màu xanh chủ đạo */
+    border: 1px solid var(--border-btn);
     padding: 20px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 0 10px rgb(0 0 0 / 43%);
-    background-image: linear-gradient(to bottom, #5a79b675, rgb(0 0 0 / 60%)), url(https://th.bing.com/th/id/OIP.0UQaGVOAYyykB5EI83s8YwHaF7?pid=ImgDet&rs=1);
+    background-image: linear-gradient(to bottom, #5ab6a288, rgba(0, 0, 0, 0.737)),
+      url(https://th.bing.com/th/id/OIP.0UQaGVOAYyykB5EI83s8YwHaF7?pid=ImgDet&rs=1);
     background-size: contain;
     background-repeat: no-repeat;
   
     .title_result {
       font-weight: bold;
-      color: #caf4ff; /* Màu xanh chủ đạo */
+      color: #caf4ff;
       margin: 10px 10px 0 0;
       font-size: 17px;
       font-weight: 600;
     }
-  
+    .result_item-title{
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--white-color);
+    }
+
     .result_item {
       margin: 10px 5px 0 0;
-      color: var(--white-color); /* Màu văn bản chính */
+      color: var(--white-color);
       font-size: 17px;
       padding: 0 5 0 0;
       font-weight: 600;
     }
   
     .button_result {
-      background-color: var(--border-btn); /* Màu nền xanh chủ đạo */
-      color: #fff; /* Màu văn bản trắng */
+      background-color: var(--border-btn);
+      color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
@@ -138,14 +165,24 @@
       margin-top: 20px;
   
       &:hover {
-        background-color:var(--btn-header); /* Màu nền xanh nhạt khi hover */
+        background-color: var(--btn-header);
       }
     }
-    .row{
-        display: flex;
+  
+    .row {
+      display: flex;
+      flex-wrap: wrap;
     }
-    .row_item{
-        
+  
+    .row_item {
+      flex: 1;
+      width: 50%;
+    }
+
+    .image_result{
+        width: 345px;
+        border-radius: 25px;
+        margin: 15px 0 5px;
     }
   }
   

@@ -6,7 +6,7 @@ import Button from '../../Component/Button';
 import React, { useState, useEffect } from 'react';
 
 const cx = classNames.bind(styles)
-
+const apiURL = process.env.REACT_APP_API_URL
 function Home() {
 
     const [formData, setFormData] = useState({
@@ -24,42 +24,28 @@ function Home() {
         numberChair: '',
         kind: '',
         state: false,
-        rooms: ''
+        rooms: '',
+        img: ''
     });
     const [searchResult, setSearchResult] = useState([]);
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
+    const [oneWayChecked, setOneWayChecked] = useState(false); //để theo dõi trạng thái của checkbox "OneWay"
 
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
+        // Kiểm tra nếu checkbox "OneWay" được chọn, thì làm cho ô "Return" không thể sửa đổi
+        if (name === 'return' && oneWayChecked) {
+            return;
+        }
         setFormData({ ...formData, [name]: value });
     };
-
-    // Hàm xử lý sự kiện khi người dùng nhấn nút "Search".   
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     fetch(`http://localhost:8000/v1/tickets?from=${formData.from}&to=${formData.to}`)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             // Lọc dữ liệu chỉ chứa các bản ghi có 'from' và 'to' tương ứng.
-    //             const filteredData = data.filter((result) => {
-    //                 return result.from === formData.from && result.to === formData.to;
-    //             });
-    //             console.log(filteredData); // Hiển thị dữ liệu tàu trong console hoặc bạn có thể hiển thị nó trên giao diện người dùng.
-    //             // Trích xuất thông tin từ mảng rooms
-
-    //             // Cập nhật danh sách tàu trong trạng thái (state) của ứng dụng React
-    //             setSearchResult(filteredData);
-    //         })
-    //         .catch((error) => console.error(error));
-    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:8000/v1/tickets?from=${formData.from}&to=${formData.to}`);
+            const response = await fetch(`${apiURL}/v1/tickets?from=${formData.from}&to=${formData.to}&departure=${formData.departure}&return=${formData.return}`);
             const data = await response.json();
 
             // Kiểm tra xem có dữ liệu phù hợp không
@@ -84,7 +70,8 @@ function Home() {
                         numberChair: ticket.numberChair,
                         state: ticket.state,
                         kind: ticket.kind,
-                        rooms: ticket.rooms
+                        rooms: ticket.rooms,
+                        img: ticket.img
                     };
                 });
                 //             // Lọc dữ liệu chỉ chứa các bản ghi có 'from' và 'to' tương ứng.
@@ -108,7 +95,7 @@ function Home() {
 
     const handleViewRoom = (e) => {
         // Gửi yêu cầu GET đến máy chủ để lấy danh sách toa
-        fetch(`http://localhost:8000/v1/room`)
+        fetch(`${apiURL}/v1/room`)
             .then((response) => response.json())
             .then((rooms) => {
                 // Cập nhật danh sách ghế trong state
@@ -126,81 +113,105 @@ function Home() {
     return (
         <div className={cx('wrapper')} onSubmit={handleSubmit}>
             {/* form */}
-            <div className={cx('wrapper_form')}>
-                <h2 className={cx('form_title')}>BUY TICKETS ONLINE</h2>
-                <form className={cx('form')} >
-                    <div className={cx('wrapper_form-input')}>
-                        <div className={cx('form_labelInput')}>
-                            <label className={cx('form_label')}>
-                                From
-                            </label>
-                            <input
-                                type='text'
-                                name='from'
-                                value={formData.from}
-                                onChange={handleInputChange}
-                                className={cx('form_input')}
-                                placeholder='FROM' />
-                        </div>
-
-                        <div className={cx('form_labelInput')}>
-                            <label className={cx('form_label')}>
-                                To
-                            </label>
-                            <input
-                                type='text'
-                                name='to'
-                                value={formData.to}
-                                onChange={handleInputChange}
-                                className={cx('form_input')}
-                                placeholder='To' />
-                        </div>
-                    </div>
-
-                    <div className={cx('wrapper_form-inputSelect')}>
-                        <div className={cx('wrapper_form-input2')}>
+            <div className={cx('wrapper_form-bg')}>
+                <div className={cx('wrapper_form')}>
+                    <h2 className={cx('form_title')}>BUY TICKETS ONLINE</h2>
+                    <form className={cx('form')} >
+                        <div className={cx('wrapper_form-input')}>
                             <div className={cx('form_labelInput')}>
                                 <label className={cx('form_label')}>
-                                    Departure
+                                    From
                                 </label>
-                                <input type='date' name='' className={cx('form_input')} placeholder='Departure' />
+                                <input
+                                    type='text'
+                                    name='from'
+                                    value={formData.from}
+                                    onChange={handleInputChange}
+                                    className={cx('form_input')}
+                                    placeholder='FROM' />
                             </div>
 
                             <div className={cx('form_labelInput')}>
                                 <label className={cx('form_label')}>
-                                    Return
+                                    To
                                 </label>
-                                <input type='date' name='' className={cx('form_input')} placeholder='Return' />
+                                <input
+                                    type='text'
+                                    name='to'
+                                    value={formData.to}
+                                    onChange={handleInputChange}
+                                    className={cx('form_input')}
+                                    placeholder='To' />
                             </div>
                         </div>
 
-                        <div className={cx('wrapper_form-select')}>
-                            <div className={cx('wrapper_form-select2')}>
+                        <div className={cx('wrapper_form-inputSelect')}>
+                            <div className={cx('wrapper_form-input2')}>
                                 <div className={cx('form_labelInput')}>
-                                    <label className={cx('form_chexbox-lable')}>One way</label>
-                                    <input type='checkbox' className={cx('chexbox')} id='OneWay' />
+                                    <label className={cx('form_label')}>
+                                        Departure
+                                    </label>
+                                    <input
+                                        type='date'
+                                        name='departure'
+                                        value={formData.departure}
+                                        className={cx('form_input')}
+                                        placeholder='Departure'
+                                        onChange={handleInputChange}
+                                    />
                                 </div>
+
                                 <div className={cx('form_labelInput')}>
-                                    <label className={cx('form_chexbox-lable')}>Round trip</label>
-                                    <input type='checkbox' className={cx('chexbox')} id='roundTrip' />
+                                    <label className={cx('form_label')}>
+                                        Return
+                                    </label>
+                                    <input
+                                        type='date'
+                                        name='return'
+                                        value={formData.return}
+                                        className={cx('form_input')}
+                                        placeholder='Return'
+                                        onChange={handleInputChange}
+                                        disabled={oneWayChecked}
+                                    />
+
                                 </div>
                             </div>
-                            <div className={cx('wrapper_form-select3')}>
-                                    <Button text href='' >Search</Button>
+
+                            <div className={cx('wrapper_form-select')}>
+                                <div className={cx('wrapper_form-select2')}>
+                                    <div className={cx('form_labelInput')}>
+                                        <label className={cx('form_chexbox-lable')}>One way</label>
+                                        <input
+                                            type='checkbox'
+                                            className={cx('chexbox')}
+                                            id='OneWay'
+                                            checked={oneWayChecked}
+                                            onChange={() => setOneWayChecked(!oneWayChecked)}
+                                        />
+
+                                    </div>
+                                    <div className={cx('form_labelInput')}>
+                                        <label className={cx('form_chexbox-lable')}>Round trip</label>
+                                        <input type='checkbox' className={cx('chexbox')} id='roundTrip' />
+                                    </div>
+                                </div>
+                                <div className={cx('wrapper_form-select3')}>
+                                    <Button primary href='' >Search</Button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-
-                </form>
-            </div >
+                    </form>
+                </div >
+            </div>
             {/* test dữ liệu */}
             {/* Hiển thị kết quả tìm kiếm ở đây */}
 
             <div className={cx('wrapper_results')}>
                 {searchResult.map((result, index) => (
                     <div key={index} className={cx('results_ticket')}>
-                        <div className={cx('result_item')}>{findRoomID(result.rooms)}</div>
+                        <div className={cx('result_item-title')}>{findRoomID(result.rooms)}</div>
+                        <div>{result.img && <img className={cx('image_result')} src={`${apiURL}/${result.img}`} alt="Uploaded" />}</div>
                         <div className={cx('row')}>
                             <h4 className={cx('title_result')}>From</h4>
                             <div className={cx('result_item')}>{result.from}</div>
