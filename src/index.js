@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './Component/GlobalStyle'
-
+import { CountdownProvider } from './hook/CountdownContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GlobalStyles>
-      <App />
-    </GlobalStyles>
+    {/* <CountdownProvider> */}
+      <GlobalStyles>
+        <App />
+      </GlobalStyles>
+    {/* </CountdownProvider> */}
   </React.StrictMode>
 );
 

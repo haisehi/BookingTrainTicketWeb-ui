@@ -108,27 +108,41 @@ function Home() {
         return room ? room.nameTrain : "Unknown";
     }
 
+    //hàm thêm sản phẩm vào giỏ hàng
     const addToCart = (productId) => {
         // Lấy thông tin sản phẩm từ searchResult dựa vào productId
         const product = searchResult.find(item => item._id === productId);
-    
+
         // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
         const existingCartItem = JSON.parse(localStorage.getItem('cart')) || [];
         const isProductInCart = existingCartItem.find(item => item._id === productId);
-    
+
+        if (isProductInCart && isProductInCart.addToCartDisabled) {
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng và có thuộc tính addToCartDisabled, không thực hiện thêm vào giỏ hàng
+            console.log("Train tickets are being purchased, please wait or choose another ticket");
+            alert("Train tickets are being purchased, please wait or choose another ticket")
+            return;
+        }
+
         if (isProductInCart) {
-            // Nếu sản phẩm đã tồn tại trong giỏ hàng, có thể thực hiện cập nhật số lượng hoặc thêm logic khác theo yêu cầu
-            // Ví dụ: tăng số lượng sản phẩm
-            isProductInCart.quantity += 1;
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, thêm thuộc tính addToCartDisabled và đặt thời gian chờ 20s
+            isProductInCart.addToCartDisabled = true;
+            setAddToCartDisabled(true); // Set trạng thái addToCartDisabled của component
+            setTimeout(() => {
+                isProductInCart.addToCartDisabled = false;
+                setAddToCartDisabled(false); // Set trạng thái addToCartDisabled của component trở lại false sau 20s
+                console.log("Now you can add to cart.");
+            }, 20000);
         } else {
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng
             existingCartItem.push({ ...product, quantity: 1 });
         }
-    
+
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
     };
-    
+
+
 
     return (
         <div className={cx('wrapper')} onSubmit={handleSubmit}>
@@ -278,9 +292,11 @@ function Home() {
                         <button
                             className={cx('button_result')}
                             onClick={() => addToCart(result._id)}
+                            disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
                         >
                             Add to cart
                         </button>
+
                     </div>
                 ))
                 }
