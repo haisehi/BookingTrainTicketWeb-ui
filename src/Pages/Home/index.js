@@ -30,7 +30,7 @@ function Home() {
     const [searchResult, setSearchResult] = useState([]);
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
     const [oneWayChecked, setOneWayChecked] = useState(false); //để theo dõi trạng thái của checkbox "OneWay"
-
+    const [addToCartDisabled, setAddToCartDisabled] = useState(false); //để kiểm soát trạng thái của nút add to cart
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -87,7 +87,6 @@ function Home() {
         }
     };
 
-
     //xem danh sách toa
     useEffect(() => {
         handleViewRoom(); // Gọi hàm này khi component được tạo
@@ -109,6 +108,27 @@ function Home() {
         return room ? room.nameTrain : "Unknown";
     }
 
+    const addToCart = (productId) => {
+        // Lấy thông tin sản phẩm từ searchResult dựa vào productId
+        const product = searchResult.find(item => item._id === productId);
+    
+        // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
+        const existingCartItem = JSON.parse(localStorage.getItem('cart')) || [];
+        const isProductInCart = existingCartItem.find(item => item._id === productId);
+    
+        if (isProductInCart) {
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, có thể thực hiện cập nhật số lượng hoặc thêm logic khác theo yêu cầu
+            // Ví dụ: tăng số lượng sản phẩm
+            isProductInCart.quantity += 1;
+        } else {
+            // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng
+            existingCartItem.push({ ...product, quantity: 1 });
+        }
+    
+        // Lưu giỏ hàng vào localStorage
+        localStorage.setItem('cart', JSON.stringify(existingCartItem));
+    };
+    
 
     return (
         <div className={cx('wrapper')} onSubmit={handleSubmit}>
@@ -255,8 +275,12 @@ function Home() {
                             <div className={cx('result_item')}>{result.state ? "booked" : "still empty"}</div>
                         </div>
 
-
-                        <button className={cx('button_result')}>Add to cart</button>
+                        <button
+                            className={cx('button_result')}
+                            onClick={() => addToCart(result._id)}
+                        >
+                            Add to cart
+                        </button>
                     </div>
                 ))
                 }
