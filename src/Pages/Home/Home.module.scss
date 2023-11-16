@@ -191,9 +191,12 @@
   .wrapper_content{
     margin: 10px 200px 0;
     .content_item{}
-    .title_content{}
-    .contnet{
-
+    .title_content{
+      text-align: center;
+      margin: 30px 0;
+    }
+    .content{
+      text-align: center;
       span{
         font-weight: 600;
       }
@@ -212,3 +215,76 @@
     }
 
   }
+
+
+//services wrapper
+.service_wrapper {
+  margin-top: 50px;
+  align-items: center;
+  border-top: 1px solid #ccc;
+
+  //title: Service
+  .service_wrapper_title {
+    text-align: center;
+    margin: 0 300px 20px;
+
+    //service title
+    .service_title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #000; // Thay đổi màu sắc theo ý muốn
+      margin: 80px 0 40px;
+    }
+
+    //service title content
+    .service_title_content {
+      margin-top: 10px;
+      color: #000; // Thay đổi màu sắc theo ý muốn
+      
+    }
+  }
+
+  //services content items
+  .service_content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 100px;
+
+    //items
+    .service_content_item {
+      display: flex;
+      max-width: 100%;
+      margin: 10px 15px ;
+      padding: 20px 30px;
+      border-bottom: 1px solid #ccc; // Thay đổi màu sắc theo ý muốn   
+      background-color: #fff; // Thay đổi màu sắc theo ý muốn
+      
+
+      //service item title
+      .service_title_item {
+        display: flex;
+        font-size: 18px;
+        font-weight: bold;
+        color: #000; // Thay đổi màu sắc theo ý muốn
+        padding: 40px 10px;
+        width: 20%;
+        h3{
+          margin-left: 20px;
+        }
+      }
+
+      //service item content
+      .service_content-item-right {
+        width: 80%;
+        font-size: 18px;
+        color: #333; // Thay đổi màu sắc theo ý muốn
+        padding: 40px 20px 0;
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+
+

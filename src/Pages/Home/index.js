@@ -4,7 +4,8 @@ import styles from './Home.module.scss'
 import Button from '../../Component/Button';
 
 import React, { useState, useEffect } from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSuitcase , faUtensils , faGamepad ,faChild,faDog,faHeadset,faOtter } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles)
 const apiURL = process.env.REACT_APP_API_URL
 function Home() {
@@ -300,28 +301,138 @@ function Home() {
                 ))
                 }
             </div>
+            {/* content */}
             <div className={cx('wrapper_content')}>
                 <div className={cx('content_item')}>
                     <h2 className={cx('title_content')}>Vietnam Railway Map</h2>
-                    <p className={cx('contnet')}>
+                    <p className={cx('content')}>
                         Vietnam Railway Map – The Vietnamese railway system now has the total length of about 2.600km, connecting most cities and provinces all over Vietnam, including many cultural, societal and tourism destinations from the North to the South of Vietnam.
                         The domestic railway system is also linked with the Chinese railway that allows the train to come across the borderline and reach stations in Nanning and Beijing.
                     </p>
                     <div className={cx('image_content')}>
                         <img src="https://i0.wp.com/vietnamrailway.com.vn/wp-content/uploads/2019/10/Vietnam-train-map-detail-vietnamrailway.com_.vn-02.png?w=1500&ssl=1" />
                     </div>
-                    <div className={cx('contnet')}>
-                        <span>Children Price: Apply For Reunification Express Train:</span><br />
-                        Get Train Ticket Online by Email.
-                        Children under 6 years old do not need to buy ticket (Share Bed or Seat with parents).<br />
-                        <span>Apply For Tourist Express Train:</span><br />
-                        <ul>
-                            <li>Free Delivery ticket in Vietnam for all tourist train ticket.</li>
-                            <li>Children under 6 years old do not need to buy ticket (Share Bed or Seat with parents).</li>
-                            <li>Children from 6 years old pay same as adults.</li>
-                        </ul>
-                        <span>Luggage:</span><br />
-                        Carry-on Bags: The train cabins are allowed to carry baggages not to exceed the weight limitation of 20 kgs of adults and 10 kgs of children. This baggages are wrapped neatly and reliably.
+                </div>
+            </div>
+            {/* content service */}
+            <div className={cx('service_wrapper')}>
+                <div className={cx('service_wrapper_title')}>
+                    <h2 className={cx('service_title')}>Onboard services on Train</h2>
+                    <p className={cx('service_title_content')}>Discover more about the onboard services offered on Vietnam Domestic trains.</p>
+                </div>
+                <div className={cx('service_content')}>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faSuitcase} />
+                            <h3 >Luggage</h3></div>
+                        <div className={cx('service_content-item-right')}>
+                            Although there is no limit on luggage weight when participating in domestic train trips in Vietnam, please take responsibility for ensuring the safety of your personal luggage.<br />
+                            Remember to label each bag clearly and adhere to the size regulations. For trains to and from domestic cities, the length of the luggage must not exceed 85 cm, while the maximum dimensions are 75 x 53 x 30 cm for trains running within Europe.
+                        </div>
+                    </div>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faUtensils} />
+                            <h3 >Food and drink</h3>
+                        </div>
+                        <div className={cx('service_content-item-right')}>
+                            If you are experiencing domestic train travel in Vietnam, depending on your ticket class, you will have different culinary experiences.<br />
+                            For passengers in standard class, you can choose from a variety of drinks and snacks at the onboard service counter. Payment can be made by card or cash in Vietnamese Dong.<br />
+                            If you choose Standard Premier class, you will be served snacks and drinks right at your seat.<br />
+                            With Business or Premium class, you will enjoy a delicious meal and continuous beverage service throughout the journey.<br />
+                            Visit the onboard bar to choose from a wide range of hot and cold drinks, as well as sweet and savory snacks on all domestic trains. For Premium class, your meal will be served directly to your seat, making your journey comfortable and convenient.<br />
+                        </div>
+                    </div>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faGamepad} />
+                            <h3 >Entertainment</h3>
+                        </div>
+                        <div className={cx('service_content-item-right')}>
+                            During your domestic train journey in Vietnam, you will enjoy free WiFi to stay connected online. Furthermore, at your seat, there will be power sockets that correspond to UK and EU plug standards. This makes it easy to recharge your devices during domestic travel, ensuring you're always connected and ready to capture those special moments.
+                        </div>
+                    </div>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faChild} />
+                            <h3 >Travel with children</h3>
+                        </div>
+                        <div className={cx('service_content-item-right')}>
+                            In Vietnam, children under 4 years old often have a free travel policy on domestic trains, as long as they travel with an adult and sit on their lap or can buy a child ticket to ensure their own seat.<br />
+                            On domestic trains, you can find dedicated family areas with changing desks to cater to your needs. The seats can be arranged to create a comfortable space for the family, perhaps 4 seats facing each other so you can conveniently experience the journey together.<br />
+                        </div>
+                    </div>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faDog} />
+                            <h3 >Pet</h3>
+                        </div>
+                        <div className={cx('service_content-item-right')}>
+                            If you want to travel domestically by train in Vietnam with pets, check specific regulations before your trip, as rules may vary depending on the specific station and service. Here are some general guidelines:<br />
+                            <h4>Domestic Train:</h4><br />
+                            Small pets may be allowed to go free, but need to be placed in a cage or specialized bag of a certain size.
+                            If your pet is larger in size, you may need to purchase a ticket for them and take the safest measures for both passengers and pets.
+                            <h4>Seating and Private Areas:</h4><br />
+                            Some stations may provide separate seating or areas for passengers traveling with pets.
+                            Please contact the station or train service directly for detailed information and reservations.
+                            <h4>Special Rules:</h4><br />
+                            For guide and service dogs, check specific booking rules and other measures required.
+                            <br />
+                            Note that traveling with pets may require special measures to ensure the safety and comfort of both passengers and pets.
+                        </div>
+                    </div>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faHeadset} />
+                            <h3 >Special support</h3>
+                        </div>
+                        <div className={cx('service_content-item-right')}>
+                            If you need help getting on or off the train during your domestic train travel in Vietnam, please contact the station or train service directly before your trip for details about the programs. Special support available.
+                            <br />
+                            Here are some general guidelines:
+                            <br />
+                            <h4>Contact Before:</h4>
+
+                            Contact the train service or station directly at least 48 hours before your trip to advise of the need for assistance and make appropriate arrangements.
+                            <br />
+                            <h4>Wheelchair Reservations:</h4>
+                            <br />
+                            If you use a wheelchair, make sure you book a wheelchair space, and check if there are any requests or costs that need to be dealt with.
+                            <br />
+                            <h4>Prepare Before Arriving at the Station:</h4>
+                            <br />
+                            Arrive at the station at least one hour before your scheduled departure time to allow time to arrange support measures and check your condition.
+                            <br />
+                            <h4>Regulations for Wheelchairs:</h4>
+                            <br />
+                            For wheelchairs, check specific regulations regarding acceptable wheelchair sizes, weights and types.
+                            <br />
+                            Note that advance notice and contact will help ensure that all arrangements are made to ensure you have a smooth and comfortable journey.
+                        </div>
+                    </div>
+                    {/* box item */}
+                    <div className={cx('service_content_item')}>
+                        <div className={cx('service_title_item')}>
+                            <FontAwesomeIcon icon={faOtter} />
+                            <h3 >Other</h3>
+                        </div>
+                        <div className={cx('service_content-item-right')}>
+                            If you are traveling by domestic train in Vietnam, check the train service and station's specific regulations regarding special items. Here are some general guidelines:
+                            <br />
+                            <h4>Liquid:</h4>
+                            Normally, there are no restrictions on liquids on domestic trains, but there may be specific regulations for special types. As for alcohol, check to see if there are restrictions on the amount and type of alcohol you can bring.
+                            <h4>Sport equipment:</h4>
+                            Carrying of golf bags and items such as tents, bats, billiards, and darts may depend on the specific regulations of the train service and station.
+                            For camping equipment, butane, and camping gas bottles, it may be necessary to check whether they are allowed on board or not.
+                            <h4>Repair Tools and Pocket Knives:</h4>
+                            If you carry a pocket knife or repair tool, check to see if there are specific regulations regarding acceptable blade sizes and types.
+                        </div>
                     </div>
                 </div>
             </div>
