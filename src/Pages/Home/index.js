@@ -231,7 +231,7 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className={cx('wrapper_form-select3')}>
-                                    <Button primary href='' >Search</Button>
+                                    <Button primary href='' className={cx('btn')}>Search</Button>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,6 @@ function Home() {
             </div>
             {/* test dữ liệu */}
             {/* Hiển thị kết quả tìm kiếm ở đây */}
-
             <div className={cx('wrapper_results')}>
                 {searchResult.map((result, index) => (
                     <div key={index} className={cx('results_ticket')}>
@@ -301,7 +300,31 @@ function Home() {
                 ))
                 }
             </div>
-
+            <div className={cx('wrapper_content')}>
+                <div className={cx('content_item')}>
+                    <h2 className={cx('title_content')}>Vietnam Railway Map</h2>
+                    <p className={cx('contnet')}>
+                        Vietnam Railway Map – The Vietnamese railway system now has the total length of about 2.600km, connecting most cities and provinces all over Vietnam, including many cultural, societal and tourism destinations from the North to the South of Vietnam.
+                        The domestic railway system is also linked with the Chinese railway that allows the train to come across the borderline and reach stations in Nanning and Beijing.
+                    </p>
+                    <div className={cx('image_content')}>
+                        <img src="https://i0.wp.com/vietnamrailway.com.vn/wp-content/uploads/2019/10/Vietnam-train-map-detail-vietnamrailway.com_.vn-02.png?w=1500&ssl=1" />
+                    </div>
+                    <div className={cx('contnet')}>
+                        <span>Children Price: Apply For Reunification Express Train:</span><br />
+                        Get Train Ticket Online by Email.
+                        Children under 6 years old do not need to buy ticket (Share Bed or Seat with parents).<br />
+                        <span>Apply For Tourist Express Train:</span><br />
+                        <ul>
+                            <li>Free Delivery ticket in Vietnam for all tourist train ticket.</li>
+                            <li>Children under 6 years old do not need to buy ticket (Share Bed or Seat with parents).</li>
+                            <li>Children from 6 years old pay same as adults.</li>
+                        </ul>
+                        <span>Luggage:</span><br />
+                        Carry-on Bags: The train cabins are allowed to carry baggages not to exceed the weight limitation of 20 kgs of adults and 10 kgs of children. This baggages are wrapped neatly and reliably.
+                    </div>
+                </div>
+            </div>
         </div >
     );
 }

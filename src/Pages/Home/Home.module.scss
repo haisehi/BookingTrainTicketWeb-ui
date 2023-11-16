@@ -91,10 +91,11 @@
   
   .wrapper_form-select3 {
     display: flex;
-    width: 100%;
+    width: 40%;
+    margin-top: 20px;
     margin-left: 70%;
     margin-right: 70%;
-    transform: translateX(-50%);
+    transform: translateX(-130%);
   }
   
   .form_chexbox {
@@ -111,6 +112,7 @@
     border-radius: 50%;
     padding: 0 10px;
   }
+
   
   .wrapper_results {
     margin-top: 50px;
@@ -186,3 +188,27 @@
     }
   }
   
+  .wrapper_content{
+    margin: 10px 200px 0;
+    .content_item{}
+    .title_content{}
+    .contnet{
+
+      span{
+        font-weight: 600;
+      }
+      ul{
+        margin: 4px 30px 0;
+      }
+      li{
+        list-style: disc;
+      }
+    }
+    .image_content{
+      img{
+        width: 80%;
+        margin: 2% 10%;
+      }
+    }
+
+  }
