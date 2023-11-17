@@ -3,10 +3,11 @@ import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
 
 const cx = classNames.bind(styles);
+const apiURL = process.env.REACT_APP_API_URL
 
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
-    const [countdown, setCountdown] = useState(20); // Thời gian đếm ngược ban đầu, tính bằng giây
+    const [countdown, setCountdown] = useState(300); // Thời gian đếm ngược ban đầu, tính bằng giây
 
     useEffect(() => {
         // Lấy thông tin giỏ hàng từ localStorage khi component được tạo
@@ -38,10 +39,41 @@ function Cart() {
     useEffect(() => {
         // Khi thời gian đếm ngược hết, xoá giỏ hàng và local storage
         if (countdown === 0) {
+            cartItems.forEach(async (item) => {
+                await updateTicketState(item._id); // Update ticket state in the database
+            });
+
             localStorage.removeItem('cart');
             setCartItems([]);
         }
     }, [countdown]);
+
+    const handleDeleteItem = (itemId) => {
+        // Xoá sản phẩm khỏi giỏ hàng dựa trên itemId
+        const updatedCart = cartItems.filter(item => item._id !== itemId);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        setCartItems(updatedCart);
+
+        // Update ticket state in the database when removing from the cart
+        updateTicketState(itemId);
+    };
+
+    const updateTicketState = async (itemId) => {
+        try {
+            // Make an API call to update the ticket state to false
+            await fetch(`${apiURL}/v1/tickets/update-ticket-state/${itemId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ state: false }),
+            });
+
+            console.log(`Ticket state for item ${itemId} updated to false.`);
+        } catch (error) {
+            console.error('Error updating ticket state:', error);
+        }
+    };
 
     const handleCheckout = () => {
         // Thực hiện xử lý thanh toán theo nhu cầu của bạn
@@ -52,12 +84,6 @@ function Cart() {
         setCartItems([]);
     };
 
-    const handleDeleteItem = (itemId) => {
-        // Xoá sản phẩm khỏi giỏ hàng dựa trên itemId
-        const updatedCart = cartItems.filter(item => item._id !== itemId);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        setCartItems(updatedCart);
-    };
 
     return (
         <div className={cx('cart-container')}>

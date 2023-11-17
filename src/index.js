@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './Component/GlobalStyle'
 import { CountdownProvider } from './hook/CountdownContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

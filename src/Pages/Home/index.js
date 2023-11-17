@@ -3,11 +3,16 @@ import classNames from 'classnames/bind';
 import styles from './Home.module.scss'
 import Button from '../../Component/Button';
 
+
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSuitcase , faUtensils , faGamepad ,faChild,faDog,faHeadset,faOtter } from '@fortawesome/free-solid-svg-icons';
+import { faSuitcase, faUtensils, faGamepad, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
+import io from 'socket.io-client';
+const socket = io('http://localhost:8000'); 
+
 const cx = classNames.bind(styles)
 const apiURL = process.env.REACT_APP_API_URL
+
 function Home() {
 
     const [formData, setFormData] = useState({
@@ -110,35 +115,52 @@ function Home() {
     }
 
     //hàm thêm sản phẩm vào giỏ hàng
-    const addToCart = (productId) => {
+    const addToCart = async (productId) => {
         // Lấy thông tin sản phẩm từ searchResult dựa vào productId
         const product = searchResult.find(item => item._id === productId);
-
         // Kiểm tra nếu sản phẩm đã tồn tại trong giỏ hàng
         const existingCartItem = JSON.parse(localStorage.getItem('cart')) || [];
         const isProductInCart = existingCartItem.find(item => item._id === productId);
-
+        try {
+            // Make an API call to update the ticket state to true
+            await fetch(`${apiURL}/v1/tickets/update-ticket-state/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ state: true }),
+            });
+            console.log('Ticket state updated successfully.');
+        } catch (error) {
+            console.error('Error updating ticket state:', error);
+        }
         if (isProductInCart && isProductInCart.addToCartDisabled) {
             // Nếu sản phẩm đã tồn tại trong giỏ hàng và có thuộc tính addToCartDisabled, không thực hiện thêm vào giỏ hàng
             console.log("Train tickets are being purchased, please wait or choose another ticket");
-            alert("Train tickets are being purchased, please wait or choose another ticket")
             return;
         }
-
         if (isProductInCart) {
-            // Nếu sản phẩm đã tồn tại trong giỏ hàng, thêm thuộc tính addToCartDisabled và đặt thời gian chờ 20s
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, thêm thuộc tính addToCartDisabled và đặt thời gian chờ khi trở lại trạng thai state
             isProductInCart.addToCartDisabled = true;
             setAddToCartDisabled(true); // Set trạng thái addToCartDisabled của component
-            setTimeout(() => {
+            if (formData.state === false) {
                 isProductInCart.addToCartDisabled = false;
-                setAddToCartDisabled(false); // Set trạng thái addToCartDisabled của component trở lại false sau 20s
+                setAddToCartDisabled(false); // Set trạng thái addToCartDisabled của component trở lại false sau khi trở lại trạng thai state
                 console.log("Now you can add to cart.");
-            }, 20000);
+                // Cập nhật trạng thái của sản phẩm trong searchResult ngay sau khi thêm vào giỏ hàng
+                const updatedSearchResult = searchResult.map(item => (item._id === productId ? { ...item, state: true } : item));
+                setSearchResult(updatedSearchResult);
+
+                // Gửi thông điệp đến server với sự kiện 'updateCartState'
+                socket.emit('updateCartState');
+            }
         } else {
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng
             existingCartItem.push({ ...product, quantity: 1 });
+            // Cập nhật trạng thái của sản phẩm trong searchResult ngay sau khi thêm vào giỏ hàng
+            const updatedSearchResult = searchResult.map(item => (item._id === productId ? { ...item, state: true } : item));
+            setSearchResult(updatedSearchResult);
         }
-
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
     };
@@ -289,20 +311,28 @@ function Home() {
                             <div className={cx('result_item')}>{result.state ? "booked" : "still empty"}</div>
                         </div>
 
-                        <button
-                            className={cx('button_result')}
-                            onClick={() => addToCart(result._id)}
-                            disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
-                        >
-                            Add to cart
-                        </button>
-
+                        {result.state ? (
+                            <button
+                                className={cx('button_result')}
+                                onClick={() => alert("Train tickets are being purchased, please wait or choose another ticket")}
+                                disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
+                            >
+                                Add to cart
+                            </button>
+                        ) : (
+                            <button
+                                className={cx('button_result')}
+                                onClick={() => addToCart(result._id)}
+                                disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
+                            >
+                                Add to cart
+                            </button>
+                        )}
                     </div>
-                ))
-                }
+                ))}
             </div>
             {/* content */}
-            <div className={cx('wrapper_content')}>
+            <div className={cx('wrapper_content')} >
                 <div className={cx('content_item')}>
                     <h2 className={cx('title_content')}>Vietnam Railway Map</h2>
                     <p className={cx('content')}>
