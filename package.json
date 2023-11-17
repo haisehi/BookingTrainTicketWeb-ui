@@ -19,6 +19,7 @@
     "react-hook-form": "^7.47.0",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
+    "react-spring": "^9.7.3",
     "scss": "^0.2.4",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",

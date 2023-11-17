@@ -20,7 +20,8 @@ function Header() {
             <Link className={cx('nav_header-items')} to='/Contact' ><li>Contact</li></Link>
             <Link className={cx('nav_header-items')} to='/Promotions' ><li>Promotions</li></Link>
             <Link className={cx('nav_header-items')} to='/Cart' ><li>Cart</li></Link>
-            <Button primary >Login</Button>
+            <Link to='/Login' ><Button primary >Login</Button></Link>
+            
         </ul>
         </div>
      );
