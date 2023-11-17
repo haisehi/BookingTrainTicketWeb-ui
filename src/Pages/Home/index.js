@@ -82,7 +82,7 @@ function Home() {
                 });
                 //             // Lọc dữ liệu chỉ chứa các bản ghi có 'from' và 'to' tương ứng.
                 const filteredData = datas.filter((result) => {
-                    return result.from === formData.from && result.to === formData.to;
+                    return result.from === formData.from && result.to === formData.to && result.departure === formData.departure && result.return === formData.return;
                 });
 
                 setSearchResult(filteredData);
@@ -160,6 +160,7 @@ function Home() {
             // Cập nhật trạng thái của sản phẩm trong searchResult ngay sau khi thêm vào giỏ hàng
             const updatedSearchResult = searchResult.map(item => (item._id === productId ? { ...item, state: true } : item));
             setSearchResult(updatedSearchResult);
+            socket.emit('updateCartState');
         }
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
@@ -313,7 +314,7 @@ function Home() {
 
                         {result.state ? (
                             <button
-                                className={cx('button_result')}
+                                className={cx('button_result','btnTrue')}
                                 onClick={() => alert("Train tickets are being purchased, please wait or choose another ticket")}
                                 disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
                             >
@@ -321,7 +322,7 @@ function Home() {
                             </button>
                         ) : (
                             <button
-                                className={cx('button_result')}
+                                className={cx('button_result','btnFalse')}
                                 onClick={() => addToCart(result._id)}
                                 disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
                             >

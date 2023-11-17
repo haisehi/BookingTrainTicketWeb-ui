@@ -7,7 +7,7 @@ const apiURL = process.env.REACT_APP_API_URL
 
 function Cart() {
     const [cartItems, setCartItems] = useState([]);
-    const [countdown, setCountdown] = useState(300); // Thời gian đếm ngược ban đầu, tính bằng giây
+    const [countdown, setCountdown] = useState(10); // Thời gian đếm ngược ban đầu, tính bằng giây
 
     useEffect(() => {
         // Lấy thông tin giỏ hàng từ localStorage khi component được tạo
