@@ -4,6 +4,8 @@ import styles from "./Register.module.scss"; // Import file SCSS của trang đ�
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSpring, animated } from "react-spring";
+import { registerUser } from "../../redux/apiRequest";
+import { useDispatch } from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -11,14 +13,26 @@ function Register() {
     const [userName, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newUser = {
+            userName: userName,
+            email: email,
+            password: password,
+        };
+        registerUser(newUser, dispatch, navigate);
+    }
+
     const gradientColor = useSpring({
         background: `linear-gradient(180deg, #a3ffef, #0eb517e8)`,
     });
 
     return (
         <div className={cx('register-container')}>
-            <animated.form style={{ ...gradientColor }} className={cx('register-form')} >
+            <animated.form style={{ ...gradientColor }} className={cx('register-form')} onSubmit={handleSubmit}>
                 <h2>Register</h2>
                 <label className={cx('register-label')}>User name</label>
                 <input

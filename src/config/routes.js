@@ -7,6 +7,7 @@ const routes = {
     Cart : '/Cart',
     Login:'/Login',
     register:'/register',
+    Profive:'/Profive',
 }
 
 export default routes

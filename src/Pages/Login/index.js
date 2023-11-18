@@ -4,12 +4,25 @@ import styles from "./Login.module.scss"
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSpring, animated } from "react-spring";
+import { loginUserAdmin } from "../../redux/apiRequest";
+import { useDispatch } from "react-redux";
 
 const cx = classNames.bind(styles)
 
 function Login() {
     const [userName, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newUser = {
+            userName: userName,
+            password: password,
+        };
+        loginUserAdmin(newUser, dispatch, navigate)
+    }
 
     const gradientColor = useSpring({
         background: `linear-gradient(180deg, #a3ffef, #0eb517e8)`,
@@ -17,7 +30,7 @@ function Login() {
 
     return (
         <div className={cx('login-container')}>
-            <animated.form style={{ ...gradientColor }} className={cx("login-form")}>
+            <animated.form style={{ ...gradientColor }} className={cx("login-form")} onSubmit={handleSubmit}>
                 <h2>Login</h2>
                 <label className={cx('login-label')}>User name</label>
                 <input

@@ -10,6 +10,7 @@ import Promotions from '../Pages/Promotions';
 import Cart from '../Pages/Cart';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register'
+import Profive from '../Pages/Profive'
 
 const PublicRoute = [
     {path:config.routes.home, component:Home},
@@ -20,6 +21,7 @@ const PublicRoute = [
     {path:config.routes.Cart, component:Cart},
     {path:config.routes.Login, component:Login},
     {path:config.routes.register, component:Register},
+    {path:config.routes.Profive, component:Profive},
 ]
 
 const privateRoutes = []

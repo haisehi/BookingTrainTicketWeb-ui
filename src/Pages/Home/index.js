@@ -82,7 +82,7 @@ function Home() {
                 });
                 //             // Lọc dữ liệu chỉ chứa các bản ghi có 'from' và 'to' tương ứng.
                 const filteredData = datas.filter((result) => {
-                    return result.from === formData.from && result.to === formData.to && result.departure === formData.departure && result.return === formData.return;
+                    return result.from === formData.from && result.to === formData.to && result.departure === formData.departure || result.return === formData.return;
                 });
 
                 setSearchResult(filteredData);
