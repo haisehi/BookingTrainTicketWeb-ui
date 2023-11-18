@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { createAxios } from '../../createInstance';
+import React, { useState, useEffect, Fragment } from 'react';
+import {  useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+
 
 import classNames from 'classnames/bind';
 import styles from './Cart.module.scss';
-
 
 const cx = classNames.bind(styles);
 const apiURL = process.env.REACT_APP_API_URL
 
 function Cart() {
+    const [data, setData] = useState([]);
+    const [formData, setFormData] = useState({
+        name: '', object: '', phone: '', email: '', CMND: '', address: '', paymethod: '', ticket: '', accUser: ''
+    });
     const [cartItems, setCartItems] = useState([]);
-    const [countdown, setCountdown] = useState(60); // Thời gian đếm ngược ban đầu, tính bằng giây
+    const [countdown, setCountdown] = useState(100); // Thời gian đếm ngược ban đầu, tính bằng giây
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     const user = useSelector((state) => state.auth.login.currentUser);
 
 
@@ -79,10 +80,33 @@ function Cart() {
             console.error('Error updating ticket state:', error);
         }
     };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
     //thực hiện thanh toán
-    const handleCheckout = () => {
+    const handleCheckout = (e) => {
         // Thực hiện xử lý thanh toán theo nhu cầu của bạn
         console.log("Processing payment...");
+        e.preventDefault();
+        fetch(`${apiURL}/v1/customer`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((newCustomerShip) => {
+                // Cập nhật danh sách tàu hỏa sau khi thêm thành công
+                setData([...data, newCustomerShip]);
+                setFormData({
+                    name: '', object: '', phone: '', email: '', CMND: '', address: '', paymethod: '', ticket: '', accUser: ''
+                });
+                console.log("Checkout successful")
+            })
+            .catch((error) => console.error(error));
 
         // Làm mới giỏ hàng
         localStorage.removeItem('cart');
@@ -164,41 +188,110 @@ function Cart() {
                         </tbody>
                     </table>
                     {user ? (
-                        <form>
-                            <p>{user.userName}</p>
-
-                            <label>Fullname</label>
-                            <input type='text' />
-                            <label>Object</label>
-                            <input type='text' />
-                            <label>phone</label>
-                            <input type='number' />
-                            <label>Email</label>
-                            <input type='email' />
-                            <label>Address</label>
-                            <input type='text' />
-                            <label>CCCD</label>
-                            <input type='text' />
-                            <label>Pay method</label>
-                            <input type='text' />
-                        </form>
+                        <Fragment>
+                            <form>
+                                {cartItems.map(item => (
+                                    <input
+                                        key={item._id}
+                                        type='hidden'
+                                        name='ticket'
+                                        value={formData.ticket = item._id}
+                                        onChange={handleInputChange}
+                                    />
+                                ))}
+                                <input
+                                    type='hidden'
+                                    name='accUser'
+                                    value={formData.accUser = user._id}
+                                    onChange={handleInputChange}
+                                />
+                                <label>Fullname</label>
+                                <input
+                                    type='text'
+                                    name='name'
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                    placeholder='Nguyen Van A'
+                                />
+                                <label>Object</label>
+                                <input
+                                    type='text'
+                                    name='object'
+                                    value={formData.object}
+                                    onChange={handleInputChange}
+                                    placeholder='child or adult'
+                                />
+                                <label>phone</label>
+                                <input
+                                    type='number'
+                                    name='phone'
+                                    value={formData.phone}
+                                    onChange={handleInputChange}
+                                    placeholder='xx486xxxxx'
+                                />
+                                <label>Email</label>
+                                <input
+                                    type='email'
+                                    name='email'
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    placeholder='xx@example.com'
+                                />
+                                <label>Address</label>
+                                <input
+                                    type='text'
+                                    name='address'
+                                    value={formData.address}
+                                    onChange={handleInputChange}
+                                    placeholder='Ha Noi city'
+                                />
+                                <label>CCCD</label>
+                                <input
+                                    type='text'
+                                    name='CMND'
+                                    value={formData.CMND}
+                                    onChange={handleInputChange}
+                                    placeholder='xx4452xxxxxx'
+                                />
+                                <label>Pay method</label>
+                                <input
+                                    type='text'
+                                    name='paymethod'
+                                    value={formData.paymethod}
+                                    onChange={handleInputChange}
+                                    placeholder='pay later'
+                                />
+                            </form>
+                            {cartItems.length > 0 && (
+                                <button onClick={handleCheckout} className={cx('checkout-button')} type='submit'>
+                                    Proceed to Checkout
+                                </button>
+                            )}
+                        </Fragment>
                     ) : (
-                        <form>
-                            <label>Fullname</label>
-                            <input type='text' />
-                            <label>Object</label>
-                            <input type='text' />
-                            <label>phone</label>
-                            <input type='number' />
-                            <label>Email</label>
-                            <input type='email' />
-                            <label>Address</label>
-                            <input type='text' />
-                            <label>CCCD</label>
-                            <input type='text' />
-                            <label>Pay method</label>
-                            <input type='text' />
-                        </form>
+                        <Fragment>
+                            <form>
+                                <label>Fullname</label>
+                                <input type='text' />
+                                <label>Object</label>
+                                <input type='text' />
+                                <label>phone</label>
+                                <input type='number' />
+                                <label>Email</label>
+                                <input type='email' />
+                                <label>Address</label>
+                                <input type='text' />
+                                <label>CCCD</label>
+                                <input type='text' />
+                                <label>Pay method</label>
+                                <input type='text' />
+                            </form>
+                            <Link to="/Login">
+                                <button className={cx('checkout-button')}>
+                                    Login to checkout
+                                </button>
+                            </Link>
+                        </Fragment>
                     )}
                 </div>
             ) : (
@@ -208,11 +301,6 @@ function Cart() {
                         <img src="https://th.bing.com/th/id/OIG.tz.kN.VLSv8FUD6XrhBh?pid=ImgGn" style={{ height: '600px', }} />
                     </div>
                 </div>
-            )}
-            {cartItems.length > 0 && (
-                <button onClick={handleCheckout} className={cx('checkout-button')}>
-                    Proceed to Checkout
-                </button>
             )}
         </div>
     );
