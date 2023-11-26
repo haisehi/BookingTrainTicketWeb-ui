@@ -6,9 +6,9 @@ import Button from '../../Component/Button';
 
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSuitcase, faUtensils, faGamepad, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
+import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
 import io from 'socket.io-client';
-const socket = io('http://localhost:8000'); 
+const socket = io('http://localhost:8000');
 
 const cx = classNames.bind(styles)
 const apiURL = process.env.REACT_APP_API_URL
@@ -314,7 +314,7 @@ function Home() {
 
                         {result.state ? (
                             <button
-                                className={cx('button_result','btnTrue')}
+                                className={cx('button_result', 'btnTrue')}
                                 onClick={() => alert("Train tickets are being purchased, please wait or choose another ticket")}
                                 disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
                             >
@@ -322,7 +322,7 @@ function Home() {
                             </button>
                         ) : (
                             <button
-                                className={cx('button_result','btnFalse')}
+                                className={cx('button_result', 'btnFalse')}
                                 onClick={() => addToCart(result._id)}
                                 disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
                             >
@@ -379,7 +379,7 @@ function Home() {
                     {/* box item */}
                     <div className={cx('service_content_item')}>
                         <div className={cx('service_title_item')}>
-                            <FontAwesomeIcon icon={faGamepad} />
+                            <FontAwesomeIcon icon={faWifi} />
                             <h3 >Entertainment</h3>
                         </div>
                         <div className={cx('service_content-item-right')}>

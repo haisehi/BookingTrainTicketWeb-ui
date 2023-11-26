@@ -1,0 +1,75 @@
+// Footer.module.scss
+
+.footer {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 50px 0;
+    width: 100%;
+    margin:100px 0 0;
+    height: 450px;
+    border-top: 1px solid #ccc;
+}
+
+.container {
+    display: flex;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 100px;
+}
+
+.footer-section {
+    margin-right: 40px;
+    max-width: 300px;
+}
+
+h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+// Update your SCSS file
+
+.social-icons {
+    display: flex;
+    flex-direction: column;
+
+    div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        span {
+            width: 70%;
+            padding-left: 10px;
+            font-size: 1rem;
+            color: #000000;
+        }
+    }
+}
+
+.icon-link {
+    width: 30%;
+    padding-right: 10px;
+    color: #000000;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+
+.footer-bottom {
+    background-color: #d0d0d0;
+    padding: 10px 0;
+    text-align: center;
+    color: #000000;
+    margin: 70px 0 0;
+}

@@ -29,7 +29,7 @@ function Header() {
                 <Link className={cx('nav_header-items')} to='/Cart' ><li>Cart</li></Link>
                 {user ? (
                     <Fragment>
-                        <Link to='/Profive' className={cx('nav_header-items')}><li>Profile</li></Link>
+                        <Link to='/Profile' className={cx('nav_header-items')}><li>Profile</li></Link>
                     </Fragment>
                 ) : (
                     <Link to='/Login' ><Button primary >Login</Button></Link>)

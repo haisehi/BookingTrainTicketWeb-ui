@@ -9,7 +9,7 @@ import styles from './Profive.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Profive = () => {
+const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.login.currentUser);
@@ -24,9 +24,9 @@ const Profive = () => {
   return (
     <div className={cx('profive-container')}>
       <div className={cx('sidebar')}>
-        <Link to="/profile">Profile</Link>
-        <Link to="/tickets">Your Tickets</Link>
-        <Link to="/shipping">Your Shipping</Link>
+        <Link className={cx('link1')} to="/profile">Profile</Link>
+        <Link to="/shipping">Your Tickets</Link>
+
         <button onClick={handleLogOut} className={cx('logout-button')}>
           Log out
         </button>
@@ -54,4 +54,4 @@ const Profive = () => {
   );
 };
 
-export default Profive;
+export default Profile;

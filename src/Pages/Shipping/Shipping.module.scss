@@ -1,0 +1,79 @@
+/* Profive.module.scss */
+
+.profive-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  a, .link1 {
+      text-decoration: none;
+      color: #333;
+      margin-bottom: 10px;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+          color: #4caf50;
+      }
+  }
+
+  .link1 {
+      color: #6c6c6c;
+      &:hover {
+          color: #4caf50;
+      }
+  }
+
+  .logout-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+          background-color: #45a049;
+      }
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #6da16767;
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+
+      thead, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+          text-align: center;
+      }
+
+      thead {
+          background-color: #4caf50;
+          color: white;
+      }
+
+      tr:nth-child(even) {
+          background-color: #f2f2f2;
+      }
+  }
+}
