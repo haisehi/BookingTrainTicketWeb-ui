@@ -55,10 +55,10 @@
 }
 .text{
     border-color: rgba(22, 24, 35, 0.12);
-    background-color: var(--white-color);
+    background-color: var(--btn-header);
 
     &:hover{
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: rgb(27, 119, 35);
     }
 }
 

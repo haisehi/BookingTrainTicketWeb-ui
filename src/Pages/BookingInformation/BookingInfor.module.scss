@@ -1,0 +1,118 @@
+.wrapper_form-bg {
+    padding: 20px;
+    height: auto;
+  }
+  
+  .wrapper_form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #e3e3e3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    // Center the form
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form_title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    width: 100%; // Take the full width
+  }
+  
+  .wrapper_form-input {
+    margin-bottom: 20px;
+    width: 100%; // Take the full width
+  }
+  
+  .form_labelInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%; // Take the full width
+  }
+  
+  .form_label {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .form_input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 100%; // Take the full width
+  }
+  
+  .btn {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: var(--btn-header);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: rgb(27, 119, 35);
+    }
+  }
+  
+  // Table styles
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  thead {
+    background-color: var(--btn-header);
+    color: #fff;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .inforCus {
+    margin-top: 20px;
+    width: 100%; // Take the full width
+    text-align: center;
+  }
+  
+  .inforCus h2 {
+    font-size: 24px;
+    color: var(--btn-header);
+    margin-bottom: 15px;
+  }
+  
+  .inforCus p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .inforCus table {
+    margin-top: 20px;
+  }
+  
