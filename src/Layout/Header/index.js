@@ -23,7 +23,6 @@ function Header() {
             <ul className={cx('nav_header')}>
                 <Link className={cx('nav_header-items', 'home-active')} to='/' ><li>Home</li></Link>
                 <Link className={cx('nav_header-items')} to='/BookingInformation' ><li>Booking Information</li></Link>
-                <Link className={cx('nav_header-items')} to='/ChoiceTicket' ><li>Choice Ticket</li></Link>
                 <Link className={cx('nav_header-items')} to='/Contact' ><li>Contact</li></Link>
                 <Link className={cx('nav_header-items')} to='/Promotions' ><li>Promotions</li></Link>
                 <Link className={cx('nav_header-items')} to='/Cart' ><li>Cart</li></Link>

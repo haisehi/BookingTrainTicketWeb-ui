@@ -125,19 +125,22 @@
   }
   
   .results_ticket {
-    border: 1px solid var(--border-btn);
-    padding: 20px;
+    // border: 1px solid var(--border-btn);
+    padding: 5px;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 43%);
-    background-image: linear-gradient(to bottom, #5ab6a288, rgba(0, 0, 0, 0.737)),
-      url(https://th.bing.com/th/id/OIP.0UQaGVOAYyykB5EI83s8YwHaF7?pid=ImgDet&rs=1);
-    background-size: contain;
-    background-repeat: no-repeat;
+    width: 85%;
   
+    .title_result1 {
+      font-size: 25px;
+      font-weight: bold;
+      color: #000000;
+      margin: 10px 10px 10px 0;
+      font-weight: 600;
+    }
     .title_result {
       font-weight: bold;
-      color: #caf4ff;
+      color: #000000;
       margin: 10px 10px 0 0;
       font-size: 17px;
       font-weight: 600;
@@ -145,14 +148,22 @@
     .result_item-title{
       font-size: 30px;
       font-weight: 600;
-      color: var(--white-color);
+      color: #000000;
+    }
+    .result_item1{
+      font-size: 25px;
+      margin: 10px 5px 10px 0;
+      color: #4a4a4a;
+      padding: 0 5 0 0;
+      font-weight: 600;
     }
     .result_item {
       margin: 10px 5px 0 0;
-      color: var(--white-color);
+      color: #4a4a4a;
       font-size: 17px;
       padding: 0 5 0 0;
       font-weight: 600;
+      
     }
   
     // button
@@ -161,9 +172,9 @@
     }
     .btnFalse{
       background-color: var(--border-btn);
+      color: var(--white-color);
     }
     .button_result {
-      color: #fff;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
@@ -172,13 +183,14 @@
       margin-top: 20px;
   
       &:hover {
-        border: 1px solid var(--btn-header);
+        border: 1px solid var(--white-color);
       }
     }
   
     .row {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-around;
     }
   
     .row_item {
@@ -187,7 +199,7 @@
     }
 
     .image_result{
-        width: 345px;
+        width: 100%;
         border-radius: 25px;
         margin: 15px 0 5px;
     }
@@ -196,7 +208,6 @@
   // content
   .wrapper_content{
     margin: 10px 200px 0;
-    .content_item{}
     .title_content{
       text-align: center;
       margin: 30px 0;

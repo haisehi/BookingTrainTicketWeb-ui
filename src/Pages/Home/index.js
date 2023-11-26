@@ -3,10 +3,9 @@ import classNames from 'classnames/bind';
 import styles from './Home.module.scss'
 import Button from '../../Component/Button';
 
-
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
+import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 import io from 'socket.io-client';
 const socket = io('http://localhost:8000');
 
@@ -92,12 +91,10 @@ function Home() {
             console.error("Lỗi khi tìm kiếm dữ liệu:", error);
         }
     };
-
     //xem danh sách toa
     useEffect(() => {
         handleViewRoom(); // Gọi hàm này khi component được tạo
     }, []);
-
     const handleViewRoom = (e) => {
         // Gửi yêu cầu GET đến máy chủ để lấy danh sách toa
         fetch(`${apiURL}/v1/room`)
@@ -109,10 +106,15 @@ function Home() {
             .catch((error) => console.error(error));
     };
     //hàm này dùng để xem tên của toa theo _id
-    const findRoomID = (rooms) => {
+    const findtrainID = (rooms) => {
         const room = RoomList.find(room => room._id === rooms);
         return room ? room.nameTrain : "Unknown";
     }
+    const findRoomID = (rooms) => {
+        const room = RoomList.find(room => room._id === rooms);
+        return room ? room.roomNumber : "Unknown";
+    }
+
 
     //hàm thêm sản phẩm vào giỏ hàng
     const addToCart = async (productId) => {
@@ -165,9 +167,6 @@ function Home() {
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
     };
-
-
-
     return (
         <div className={cx('wrapper')} onSubmit={handleSubmit}>
             {/* form */}
@@ -265,75 +264,82 @@ function Home() {
             {/* test dữ liệu */}
             {/* Hiển thị kết quả tìm kiếm ở đây */}
             <div className={cx('wrapper_results')}>
-                {searchResult.map((result, index) => (
-                    <div key={index} className={cx('results_ticket')}>
-                        <div className={cx('result_item-title')}>{findRoomID(result.rooms)}</div>
-                        <div>{result.img && <img className={cx('image_result')} src={`${apiURL}/${result.img}`} alt="Uploaded" />}</div>
-                        <div className={cx('row')}>
-                            <h4 className={cx('title_result')}>From</h4>
-                            <div className={cx('result_item')}>{result.from}</div>
-                            <h4 className={cx('title_result')}>To</h4>
-                            <div className={cx('result_item')}>{result.to}</div>
-                        </div>
-                        <div className={cx('row')}>
-                            <h4 className={cx('title_result')}>departure</h4>
-                            <div className={cx('result_item')}>{result.departure}</div>
-                            <h4 className={cx('title_result')}>return</h4>
-                            <div className={cx('result_item')}>{result.return === "" ? "..." : result.return}</div>
-                        </div>
-                        <div className={cx('row')}>
-                            <div className={cx('row_item')}>
-                                <h4 className={cx('title_result')}>timeGodeparture</h4>
-                                <div className={cx('result_item')}>{result.timeGodeparture} hours</div>
-                                <h4 className={cx('title_result')}>timeTodeparture</h4>
-                                <div className={cx('result_item')}>{result.timeTodeparture} hours</div>
-                            </div>
-                            <div className={cx('row_item')}>
-                                <h4 className={cx('title_result')}>timeGoreturn</h4>
-                                <div className={cx('result_item')}>{result.timeGoreturn === "" ? "..." : `${result.timeGoreturn} hours`}</div>
-                                <h4 className={cx('title_result')}>timeToreturn</h4>
-                                <div className={cx('result_item')}>{result.timeToreturn === "" ? "..." : `${result.timeToreturn} hours`} </div>
-                            </div>
-                        </div>
-                        <div className={cx('row')}>
-                            <h4 className={cx('title_result')}>ticketType</h4>
-                            <div className={cx('result_item')}>{result.ticketType}</div>
-                            <h4 className={cx('title_result')}>numberChair</h4>
-                            <div className={cx('result_item')}>{result.numberChair}</div>
-                        </div>
-                        <div className={cx('row')}>
-                            <h4 className={cx('title_result')}>kind</h4>
-                            <div className={cx('result_item')}>{result.kind}</div>
-                        </div>
-                        <div className={cx('row')}>
-                            <h4 className={cx('title_result')}>price</h4>
-                            <div className={cx('result_item')}>{result.price} VND</div>
-                            <h4 className={cx('title_result')}>state</h4>
-                            <div className={cx('result_item')}>{result.state ? "booked" : "still empty"}</div>
-                        </div>
+                {searchResult.map(
+                    (result, index) => (
+                        <div key={index} className={cx('results_ticket')}>
+                            <div>{result.img && <img className={cx('image_result')} src={`${apiURL}/${result.img}`} alt="Uploaded" />}</div>
+                            <div className={cx('result_item-title')}>{findtrainID(result.rooms)}</div>
+                            <div className={cx('row')}>
 
-                        {result.state ? (
-                            <button
-                                className={cx('button_result', 'btnTrue')}
-                                onClick={() => alert("Train tickets are being purchased, please wait or choose another ticket")}
-                                disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
-                            >
-                                Add to cart
-                            </button>
-                        ) : (
-                            <button
-                                className={cx('button_result', 'btnFalse')}
-                                onClick={() => addToCart(result._id)}
-                                disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
-                            >
-                                Add to cart
-                            </button>
-                        )}
-                    </div>
-                ))}
+                                <h4 className={cx('title_result1')}>From</h4>
+                                <div className={cx('result_item1')}>{result.from}</div>
+                                <h4 className={cx('title_result1')}>To</h4>
+                                <div className={cx('result_item1')}>{result.to}</div>
+                            </div>
+                            <div className={cx('row')}>
+                                <h4 className={cx('title_result')}>departure</h4>
+                                <div className={cx('result_item')}>{result.departure}</div>
+                                <h4 className={cx('title_result')}>return</h4>
+                                <div className={cx('result_item')}>{result.return === "" ? "..." : result.return}</div>
+                            </div>
+                            {/* đưa vào tippy */}
+                            <div className={cx('row')}>
+                                <div className={cx('row_item')}>
+                                    <h4 className={cx('title_result')}>timeGodeparture</h4>
+                                    <div className={cx('result_item')}>{result.timeGodeparture} hours</div>
+                                    <h4 className={cx('title_result')}>timeTodeparture</h4>
+                                    <div className={cx('result_item')}>{result.timeTodeparture} hours</div>
+                                </div>
+                                <div className={cx('row_item')}>
+                                    <h4 className={cx('title_result')}>timeGoreturn</h4>
+                                    <div className={cx('result_item')}>{result.timeGoreturn === undefined ? "..." : `${result.timeGoreturn} hours`}</div>
+                                    <h4 className={cx('title_result')}>timeToreturn</h4>
+                                    <div className={cx('result_item')}>{result.timeToreturn === undefined ? "..." : `${result.timeToreturn} hours`} </div>
+                                </div>
+                            </div>
+                            <div className={cx('row')}>
+                                <h4 className={cx('title_result')}>ticketType</h4>
+                                <div className={cx('result_item')}>{result.ticketType}</div>
+                                <h4 className={cx('title_result')}>numberChair</h4>
+                                <div className={cx('result_item')}>{result.numberChair}</div>
+                            </div>
+                            <div className={cx('row')}>
+                                <h4 className={cx('title_result')}>kind</h4>
+                                <div className={cx('result_item')}>{result.kind}</div>
+
+                                <h4 className={cx('title_result')}>Room</h4>
+                                <div className={cx('result_item')}>{findRoomID(result.rooms)}</div>
+
+                            </div>
+                            <div className={cx('row')}>
+                                <h4 className={cx('title_result')}>price</h4>
+                                <div className={cx('result_item')}>{result.price} VND</div>
+                                <h4 className={cx('title_result')}>state</h4>
+                                <div className={cx('result_item')}>{result.state ? "booked" : "still empty"}</div>
+                            </div>
+                            {result.state ? (
+                                <button
+                                    className={cx('button_result', 'btnTrue')}
+                                    onClick={() => alert("Train tickets are being purchased, please wait or choose another ticket")}
+                                    disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
+                                >
+                                    Add to cart
+                                </button>
+                            ) : (
+                                <button
+                                    className={cx('button_result', 'btnFalse')}
+                                    onClick={() => addToCart(result._id)}
+                                    disabled={addToCartDisabled} // Sử dụng trạng thái addToCartDisabled để kiểm soát trạng thái của nút
+                                >
+                                    Add to cart
+                                </button>
+                            )}
+                        </div>
+                    )
+                )}
             </div>
             {/* content */}
-            <div className={cx('wrapper_content')} >
+            <div div className={cx('wrapper_content')} >
                 <div className={cx('content_item')}>
                     <h2 className={cx('title_content')}>Vietnam Railway Map</h2>
                     <p className={cx('content')}>

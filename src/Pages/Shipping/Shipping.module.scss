@@ -57,13 +57,14 @@
   background-color: #6da16767;
 
   table {
+      font-size: 16px;
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
 
       thead, td {
           border: 1px solid #ddd;
-          padding: 8px;
+          padding: 8px 0;
           text-align: center;
       }
 
@@ -75,5 +76,35 @@
       tr:nth-child(even) {
           background-color: #f2f2f2;
       }
+
+      .logout-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #af4c4c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+  
+        &:hover {
+            background-color: rgb(111, 48, 48)
+        }
+    }
   }
+  
 }
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .loading-text {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555; /* Adjust the color as needed */
+  }
