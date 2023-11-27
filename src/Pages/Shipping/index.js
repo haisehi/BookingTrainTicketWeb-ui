@@ -10,7 +10,7 @@ import classNames from 'classnames/bind';
 import styles from './Shipping.module.scss';
 
 const cx = classNames.bind(styles);
-const apiURL = process.env.REACT_APP_API_URL
+const apiURL = process.env.REACT_APP_API_URL;
 
 const Shipping = () => {
   const dispatch = useDispatch();
@@ -22,39 +22,35 @@ const Shipping = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [customer, setCustomer] = useState(null);
-  const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
-  const [trainList, setTrainList] = useState([]);  // State để lưu danh sách toa
-
+  const [customer, setCustomer] = useState([]);
+  const [RoomList, setRoomList] = useState([]);
+  const [trainList, setTrainList] = useState([]);
 
   const handleLogOut = () => {
     logoutUser(dispatch, id, navigate, accessToken, axiosJWT);
   };
 
-  //xem danh sách toa
-  const handleViewRoom = (e) => {
-    // Gửi yêu cầu GET đến máy chủ để lấy danh sách toa
+  const handleViewRoom = () => {
     fetch(`${apiURL}/v1/room`)
       .then((response) => response.json())
       .then((rooms) => {
-        // Cập nhật danh sách ghế trong state
         setRoomList(rooms);
-        setTrainList(rooms)
+        setTrainList(rooms);
       })
       .catch((error) => console.error(error));
   };
-  //hàm này dùng để xem tên của toa theo _id
+
   const findRoomID = (rooms) => {
-    const room = RoomList.find(room => room._id === rooms);
+    const room = RoomList.find((room) => room._id === rooms);
     return room ? room.roomNumber : "Unknown";
-  }
+  };
+
   const findTrainID = (trains) => {
-    const room = RoomList.find(train => train._id === trains);
+    const room = RoomList.find((train) => train._id === trains);
     return room ? room.nameTrain : "Unknown";
-  }
+  };
 
   useEffect(() => {
-    // Gửi yêu cầu GET đến máy chủ để lấy thông tin khách hàng
     fetch(`${apiURL}/v1/customer/by-accuser/${id}`)
       .then((response) => {
         if (!response.ok) {
@@ -71,9 +67,10 @@ const Shipping = () => {
       .finally(() => {
         setLoading(false);
       });
-    // Moved this outside the conditional useEffect
+
     handleViewRoom();
   }, [id]);
+
   if (loading) {
     return (
       <div className={cx('loading-container')}>
@@ -82,29 +79,28 @@ const Shipping = () => {
           color="#00BFFF"
           height={100}
           width={100}
-          timeout={3000} // 3 seconds timeout
+          timeout={3000} 
         />
         <p className={cx('loading-text')}>Loading...</p>
       </div>
     );
   }
+
   if (error) {
     return <p>Error: {error}</p>;
   }
-
 
   return (
     <div className={cx('profive-container')}>
       <div className={cx('sidebar')}>
         <Link to="/profile">Profile</Link>
         <Link className={cx('link1')} to="/shipping">Your Tickets</Link>
-
         <button onClick={handleLogOut} className={cx('logout-button')}>
           Log out
         </button>
       </div>
       <div className={cx('main-content')}>
-        <table border='1'>
+        <table border="1">
           <thead>
             <tr>
               <td>From</td>
@@ -126,24 +122,28 @@ const Shipping = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{customer.ticket[0].from}</td>
-              <td>{customer.ticket[0].to}</td>
-              <td>{customer.ticket[0].departure}</td>
-              <td>{customer.ticket[0].return}</td>
-              <td>{customer.ticket[0].timeGodeparture}</td>
-              <td>{customer.ticket[0].timeGoreturn}</td>
-              <td>{customer.ticket[0].ticketType}</td>
-              <td>{customer.ticket[0].price} VND</td>
-              <td>{customer.ticket[0].numberChair}</td>
-              <td>{customer.ticket[0].kind}</td>
-              <td>{findRoomID(customer.ticket[0].rooms)}</td>
-              <td>{findTrainID(customer.ticket[0].rooms)}</td>
-              <td>{customer.name}</td>
-              <td>{customer.phone}</td>
-              <td>{customer.address}</td>
-              <td>{customer.createdAt}</td>
-            </tr>
+            {customer.map((customerData) =>
+              customerData.ticket.map((ticket) => (
+                <tr key={ticket._id}>
+                  <td>{ticket.from}</td>
+                  <td>{ticket.to}</td>
+                  <td>{ticket.departure}</td>
+                  <td>{ticket.return}</td>
+                  <td>{ticket.timeGodeparture}</td>
+                  <td>{ticket.timeGoreturn}</td>
+                  <td>{ticket.ticketType}</td>
+                  <td>{ticket.price}</td>
+                  <td>{ticket.numberChair}</td>
+                  <td>{ticket.kind}</td>
+                  <td>{findRoomID(ticket.rooms)}</td>
+                  <td>{findTrainID(ticket.rooms)}</td>
+                  <td>{customerData.name}</td>
+                  <td>{customerData.phone}</td>
+                  <td>{customerData.address}</td>
+                  <td>{customerData.createdAt}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
