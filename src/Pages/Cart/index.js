@@ -15,7 +15,7 @@ function Cart() {
         name: '', object: '', phone: '', email: '', CMND: '', address: '', paymethod: '', ticket: '', accUser: ''
     });
     const [cartItems, setCartItems] = useState([]);
-    const [countdown, setCountdown] = useState(100); // Thời gian đếm ngược ban đầu, tính bằng giây
+    const [countdown, setCountdown] = useState(800); // Thời gian đếm ngược ban đầu, tính bằng giây
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
     const user = useSelector((state) => state.auth.login.currentUser);
 
@@ -212,6 +212,7 @@ function Cart() {
                                     value={formData.name}
                                     onChange={handleInputChange}
                                     placeholder='Nguyen Van A'
+                                    required
                                 />
                                 <label>Object</label>
                                 <input
@@ -220,6 +221,7 @@ function Cart() {
                                     value={formData.object}
                                     onChange={handleInputChange}
                                     placeholder='child or adult'
+                                    required
                                 />
                                 <label>phone</label>
                                 <input
@@ -228,6 +230,7 @@ function Cart() {
                                     value={formData.phone}
                                     onChange={handleInputChange}
                                     placeholder='xx486xxxxx'
+                                    required
                                 />
                                 <label>Email</label>
                                 <input
@@ -236,6 +239,7 @@ function Cart() {
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     placeholder='xx@example.com'
+                                    required
                                 />
                                 <label>Address</label>
                                 <input
@@ -244,6 +248,7 @@ function Cart() {
                                     value={formData.address}
                                     onChange={handleInputChange}
                                     placeholder='Ha Noi city'
+                                    required
                                 />
                                 <label>CCCD</label>
                                 <input
@@ -252,12 +257,13 @@ function Cart() {
                                     value={formData.CMND}
                                     onChange={handleInputChange}
                                     placeholder='xx4452xxxxxx'
+                                    required
                                 />
-                                <label>Pay method</label>
+                                <label>Pay method (Pay at Station)</label>
                                 <input
-                                    type='text'
+                                    type='hidden'
                                     name='paymethod'
-                                    value={formData.paymethod}
+                                    value={formData.paymethod = "pay at station"}
                                     onChange={handleInputChange}
                                     placeholder='pay later'
                                 />
@@ -270,22 +276,6 @@ function Cart() {
                         </Fragment>
                     ) : (
                         <Fragment>
-                            <form>
-                                <label>Fullname</label>
-                                <input type='text' />
-                                <label>Object</label>
-                                <input type='text' />
-                                <label>phone</label>
-                                <input type='number' />
-                                <label>Email</label>
-                                <input type='email' />
-                                <label>Address</label>
-                                <input type='text' />
-                                <label>CCCD</label>
-                                <input type='text' />
-                                <label>Pay method</label>
-                                <input type='text' />
-                            </form>
                             <Link to="/Login">
                                 <button className={cx('checkout-button')}>
                                     Login to checkout
@@ -297,8 +287,8 @@ function Cart() {
             ) : (
                 <div >
                     <p>Your cart is empty.</p>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img src="https://th.bing.com/th/id/OIG.tz.kN.VLSv8FUD6XrhBh?pid=ImgGn" style={{ height: '600px', }} />
+                    <div className={cx('image')} >
+                        <img src="https://th.bing.com/th/id/OIG.tz.kN.VLSv8FUD6XrhBh?pid=ImgGn" />
                     </div>
                 </div>
             )}

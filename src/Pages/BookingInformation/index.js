@@ -85,6 +85,7 @@ function BookingInformation() {
                                 onChange={handleInputChange}
                                 className={cx('form_input')}
                                 placeholder="Your Identification card"
+                                required
                             />
                         </div>
                     </div>
@@ -104,10 +105,13 @@ function BookingInformation() {
                 customer && customer.map((customerData) => (
                     <div key={customerData._id} className={cx('inforCus')}>
                         <h2>Customer Information</h2>
-                        <p>Name: {customerData.name}</p>
-                        <p>Object: {customerData.object}</p>
-                        <p>Phone: {customerData.phone}</p>
-                        <p>Email: {customerData.email}</p>
+                        <div className={cx('inforCus-item')}>
+                            <p><h3>Name:</h3> {customerData.name}</p>
+                            <p><h3>Object:</h3> {customerData.object}</p>
+                            <p><h3>Phone:</h3> {customerData.phone}</p>
+                            <p><h3>Email:</h3> {customerData.email}</p>
+                            <p><h3>booking time:</h3> {customerData.createdAt}</p>
+                        </div>
                         <table border={1}>
                             <thead>
                                 <tr>

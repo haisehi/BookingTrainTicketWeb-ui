@@ -10,112 +10,142 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  
     // Center the form
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .form_title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .form {
-    width: 100%; // Take the full width
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .wrapper_form-input {
-    margin-bottom: 20px;
-    width: 100%; // Take the full width
-  }
-  
-  .form_labelInput {
-    display: flex;
-    flex-direction: column;
-    width: 100%; // Take the full width
-  }
-  
-  .form_label {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .form_input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    width: 100%; // Take the full width
-  }
-  
-  .btn {
-    margin-top: 0px;
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: var(--btn-header);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: rgb(27, 119, 35);
+
+    .form_title {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    
+    .form {
+      width: 100%; // Take the full width
+      display: flex;
+      justify-content: space-around;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+      }
+
+      .wrapper_form-input {
+        margin-bottom: 20px;
+        width: 100%; // Take the full width
+
+        .form_labelInput {
+          display: flex;
+          flex-direction: column;
+          width: 100%; // Take the full width
+
+          .form_label {
+            font-size: 18px;
+            margin-bottom: 5px;
+          }
+          
+          .form_input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            width: 100%; // Take the full width
+          }
+        }
+
+        .btn {
+          margin-top: 0px;
+          padding: 10px 15px;
+          font-size: 16px;
+          background-color: var(--btn-header);
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        
+          &:hover {
+            background-color: rgb(27, 119, 35);
+          }
+        }
+      }
     }
   }
-  
+   
   // Table styles
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+
+    thead {
+      background-color: var(--btn-header);
+      color: #fff;
+    }
+    
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+
+      @media (max-width: 767px) {
+        display: block; // Hiển thị ô dọc trên mobile
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 15px;
+  
+        &:first-child {
+          margin-top: 20px; // Thêm khoảng cách giữa các ô
+        }
+      }
+    }
+    tbody tr {
+  
+      @media (max-width: 767px) {
+        flex-direction: column; // Chuyển hàng thành cột trên mobile
+        align-items: flex-start; // Căn trái
+      }
+    }
+    
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    tbody tr:hover {
+      background-color: #f1f1f1;
+    }
   }
   
-  thead {
-    background-color: var(--btn-header);
-    color: #fff;
-  }
   
-  th,
-  td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  tbody tr:hover {
-    background-color: #f1f1f1;
-  }
   
   .inforCus {
     margin-top: 20px;
     width: 100%; // Take the full width
     text-align: center;
-  }
-  
-  .inforCus h2 {
-    font-size: 24px;
-    color: var(--btn-header);
-    margin-bottom: 15px;
-  }
-  
-  .inforCus p {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-  
-  .inforCus table {
-    margin-top: 20px;
+
+    .inforCus-item{
+      display: flex;
+      justify-content: space-evenly;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      p {
+        font-size: 16px;
+        margin: 5px 0;
+      }
+    }
+    
+
+    h2 {
+      font-size: 24px;
+      color: var(--btn-header);
+      margin-bottom: 15px;
+    }
+    
+    
+
   }
   
   .loading-container {
@@ -137,3 +167,7 @@
         }
     }
 }
+
+
+
+

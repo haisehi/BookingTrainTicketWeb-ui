@@ -2,7 +2,7 @@ const routes = {
     home: '/',
     BookingInformation: '/BookingInformation',
     Contact: '/Contact',
-    Promotions: '/Promotions',
+    schedule: '/schedule',
     Cart: '/Cart',
     Login: '/Login',
     register: '/register',

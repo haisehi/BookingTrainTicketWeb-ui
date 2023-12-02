@@ -5,7 +5,7 @@ import config from '../config';
 import Home from '../Pages/Home';
 import BookingInfomation from '../Pages/BookingInformation';
 import Contact from '../Pages/Contact';
-import Promotions from '../Pages/Promotions';
+import Schedule from '../Pages/schedule';
 import Cart from '../Pages/Cart';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register'
@@ -16,7 +16,7 @@ const PublicRoute = [
     { path: config.routes.home, component: Home },
     { path: config.routes.BookingInformation, component: BookingInfomation },
     { path: config.routes.Contact, component: Contact },
-    { path: config.routes.Promotions, component: Promotions },
+    { path: config.routes.schedule, component: Schedule },
     { path: config.routes.Cart, component: Cart },
     { path: config.routes.Login, component: Login },
     { path: config.routes.register, component: Register },

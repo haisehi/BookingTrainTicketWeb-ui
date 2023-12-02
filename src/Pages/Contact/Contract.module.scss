@@ -1,0 +1,75 @@
+.contact-container {
+    min-height: 600px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    // border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  
+    &:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+  
+    h2 {
+      color: #333;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .promotion-message {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        p {
+          white-space: nowrap;
+          animation: slideIn 25s linear infinite;
+        }
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(-100%);
+          }
+        }
+      }
+
+    .company-info,
+    .customer-support {
+      margin-top: 20px;
+  
+      p {
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+    }
+    .customer-support {
+      h3 {
+        color: #4caf50;
+      }
+    }
+
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .company-info,
+  .customer-support {
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: both;
+  }

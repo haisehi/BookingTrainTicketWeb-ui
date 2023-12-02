@@ -5,7 +5,7 @@ import Button from '../../Component/Button';
 
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter, faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
+import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
 import io from 'socket.io-client';
 const socket = io('http://localhost:8000');
 
@@ -185,7 +185,10 @@ function Home() {
                                     value={formData.from}
                                     onChange={handleInputChange}
                                     className={cx('form_input')}
-                                    placeholder='FROM' />
+                                    placeholder='FROM'
+                                    required
+                                />
+
                             </div>
 
                             <div className={cx('form_labelInput')}>
@@ -198,7 +201,9 @@ function Home() {
                                     value={formData.to}
                                     onChange={handleInputChange}
                                     className={cx('form_input')}
-                                    placeholder='To' />
+                                    placeholder='To'
+                                    required
+                                />
                             </div>
                         </div>
 
@@ -215,6 +220,7 @@ function Home() {
                                         className={cx('form_input')}
                                         placeholder='Departure'
                                         onChange={handleInputChange}
+                                        required
                                     />
                                 </div>
 
@@ -230,6 +236,7 @@ function Home() {
                                         placeholder='Return'
                                         onChange={handleInputChange}
                                         disabled={oneWayChecked}
+                                        required
                                     />
 
                                 </div>
@@ -243,6 +250,7 @@ function Home() {
                                             type='checkbox'
                                             className={cx('chexbox')}
                                             id='OneWay'
+                                            name='ticketType'
                                             checked={oneWayChecked}
                                             onChange={() => setOneWayChecked(!oneWayChecked)}
                                         />
@@ -250,13 +258,20 @@ function Home() {
                                     </div>
                                     <div className={cx('form_labelInput')}>
                                         <label className={cx('form_chexbox-lable')}>Round trip</label>
-                                        <input type='checkbox' className={cx('chexbox')} id='roundTrip' />
+                                        <input
+                                            type='checkbox'
+                                            name='ticketType'
+                                            className={cx('chexbox')}
+                                            id='roundTrip' />
                                     </div>
                                 </div>
                                 <div className={cx('wrapper_form-select3')}>
                                     <Button primary href='' className={cx('btn')}>Search</Button>
                                 </div>
                             </div>
+                        </div>
+                        <div className={cx('wrapper_form-select4')}>
+                            <Button primary href='' className={cx('btn')}>Search</Button>
                         </div>
                     </form>
                 </div >

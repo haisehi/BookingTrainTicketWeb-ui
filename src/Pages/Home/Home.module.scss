@@ -1,74 +1,84 @@
 .wrapper {
     width: 100%;
     height: auto;
+//form
+    .wrapper_form-bg {
+      padding: 200px;
+      width: 100%;
+      position: relative;
+      background-image: url('https://d13jio720g7qcs.cloudfront.net/images/guides/origin/64f0582f06b95.jpg'); /* Thay đổi đường dẫn này thành đường dẫn của hình ảnh bạn muốn sử dụng */
+      background-size: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ kích thước của phần tử */
+      background-position: center; /* Hiển thị hình ảnh ở giữa phần tử */
+      height: 450px;
+  
+      .wrapper_form {
+        position: absolute;
+        top: 15%;
+        right: 5%;
+        height: 280px;
+        width: 40%;
+        background-color: var(--bg-form);
+        border-radius: 10px 10px 60px 60px;
+        animation: slide 0.6s linear;
+
+        @media (max-width: 767px) {
+          top: 5%;
+          left: 0;
+          width: 90%;
+          height: 400px;
+        }
+
+        .form_title {
+          color: var(--white-color);
+          text-align: center;
+        }
+        .form {
+          width: 100%;
+          padding: 0 20px;
+          border-radius: 50px;
+          @media (max-width: 767px) {
+
+          }
+
+          .wrapper_form-input {
+            display: flex;
+            height: 50px;
+            width: 100%;
+            justify-content: space-between;
+            margin: 10px 0;  
+
+            @media (max-width: 767px) {
+              flex-direction: column;
+              margin-bottom: 60px;
+            }
+          }
+
+          .wrapper_form-inputSelect {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+
+            @media (max-width: 767px) {
+              flex-direction: column-reverse;
+            }
+          }
+
+        }
+      }
+    }
   }
 
-  .wrapper_form-bg {
-    padding: 200px;
-    width: 100%;
-    position: relative;
-    background-image: url('https://d13jio720g7qcs.cloudfront.net/images/guides/origin/64f0582f06b95.jpg'); /* Thay đổi đường dẫn này thành đường dẫn của hình ảnh bạn muốn sử dụng */
-    background-size: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ kích thước của phần tử */
-    background-position: center; /* Hiển thị hình ảnh ở giữa phần tử */
-    height: 450px;
-  }
-  
-  .wrapper_form {
-    position: absolute;
-    top: 15%;
-    right: 5%;
-    height: 280px;
-    width: 40%;
-    background-color: var(--bg-form);
-    border-radius: 10px 10px 60px 60px;
-    animation: slide 0.6s linear;
-  }
-  
-  .form_title {
-    color: var(--white-color);
-    text-align: center;
-  }
-  
-  .form {
-    width: 100%;
-    padding: 0 20px;
-    border-radius: 50px;
-  }
-  
-  .wrapper_form-input {
-    display: flex;
-    height: 50px;
-    width: 100%;
-    justify-content: space-between;
-    margin: 10px 0;
-  }
-  
-  .wrapper_form-input2 {
-    width: 50%;
-    height: 50px;
-  }
-  
-  .wrapper_form-inputSelect {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-  }
-  
-  .wrapper_form-select2 {
-    display: flex;
-    width: 100%;
-    margin-right: 250px;
-  }
-  
   .form_labelInput {
     margin: 10px 5px 0;
     width: 98%;
+
   }
   
   .form_label {
     width: 100%;
     font-size: 16px;
     color: var(--white-color);
+
   }
   
   .form_input {
@@ -78,6 +88,27 @@
     border: 0;
     border-radius: 20px;
     padding: 0 10px;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .wrapper_form-input2 {
+    width: 50%;
+    height: 50px;
+    @media (max-width: 767px) {
+      width: 90%;
+    }
+  }
+
+  .wrapper_form-select2 {
+    display: flex;
+    width: 100%;
+    margin-right: 250px;
+    @media (max-width: 767px) {
+      // margin: 20px 0;
+
+    }
   }
   
   @keyframes slide {
@@ -96,17 +127,26 @@
     margin-left: 70%;
     margin-right: 70%;
     transform: translateX(-130%);
+
+    @media (max-width: 767px) {
+      display: none;
+    }
   }
-  
-  .form_chexbox {
+  .wrapper_form-select4 {
+    display: none;
+
+    @media (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 42px;
+    }
   }
-  
   .form_chexbox-lable {
     width: 100%;
     font-size: 16px;
     color: var(--white-color);
   }
-  
   .chexbox {
     font-size: var(--font-size);
     border-radius: 50%;
@@ -122,14 +162,21 @@
     margin-left: 100px;
     margin-right: 100px;
     z-index: 1;
+    @media (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
+    margin-left: 5px;
+    margin-right: 5px;
+    }
   }
-  
   .results_ticket {
     // border: 1px solid var(--border-btn);
     padding: 5px;
     text-align: center;
     border-radius: 10px;
     width: 85%;
+    @media (max-width: 767px) {
+      width: 95%;
+      }
   
     .title_result1 {
       font-size: 25px;
@@ -185,6 +232,10 @@
       &:hover {
         border: 1px solid var(--white-color);
       }
+
+      @media (max-width: 767px) {
+          width: 100%;
+        }
     }
   
     .row {
@@ -208,12 +259,19 @@
   // content
   .wrapper_content{
     margin: 10px 200px 0;
+    @media (max-width: 767px) {
+      margin: 10px 10px 0;
+      padding: 0 10px;
+      }
     .title_content{
       text-align: center;
       margin: 30px 0;
     }
     .content{
       text-align: center;
+      @media (max-width: 767px) {
+        text-align: justify;
+        }
       span{
         font-weight: 600;
       }
@@ -228,6 +286,11 @@
       img{
         width: 80%;
         margin: 2% 10%;
+        @media (max-width: 767px) {
+          width: 96%;
+          margin: 2% 2%;
+          height: 650px;
+          }
       }
     }
 
@@ -244,6 +307,9 @@
   .service_wrapper_title {
     text-align: center;
     margin: 0 300px 20px;
+    @media (max-width: 767px) {
+      margin: 0 20px;
+      }
 
     //service title
     .service_title {
@@ -267,6 +333,9 @@
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 10px 100px;
+    @media (max-width: 767px) {
+      margin: 10px 0px;
+      }
 
     //items
     .service_content_item {
@@ -276,7 +345,11 @@
       padding: 20px 30px;
       border-bottom: 1px solid #ccc; // Thay đổi màu sắc theo ý muốn   
       background-color: #fff; // Thay đổi màu sắc theo ý muốn
-      
+      @media (max-width: 767px) {
+        flex-direction: column;
+        margin: 10px 5px;
+        padding: 20px 0;
+        }
 
       //service item title
       .service_title_item {
@@ -286,6 +359,10 @@
         color: #000; // Thay đổi màu sắc theo ý muốn
         padding: 40px 10px;
         width: 20%;
+        @media (max-width: 767px) {
+          padding: 10px;
+          width: 100%;
+          }
         h3{
           margin-left: 20px;
         }
@@ -298,6 +375,11 @@
         color: #333; // Thay đổi màu sắc theo ý muốn
         padding: 40px 20px 0;
         line-height: 30px;
+        @media (max-width: 767px) {
+          width: 100%;
+          text-align: justify;
+          padding: 10px;
+          }
       }
     }
   }
