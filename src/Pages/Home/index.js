@@ -6,11 +6,13 @@ import Button from '../../Component/Button';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
-import io from 'socket.io-client';
-const socket = io('http://localhost:8000');
+// import io from 'socket.io-client';
 
-const cx = classNames.bind(styles)
-const apiURL = process.env.REACT_APP_API_URL
+
+const cx = classNames.bind(styles);
+const apiURL = process.env.REACT_APP_API_URL;
+
+// const socket = io(`${apiURL}`);
 
 function Home() {
 
@@ -79,7 +81,7 @@ function Home() {
                         img: ticket.img
                     };
                 });
-                //             // Lọc dữ liệu chỉ chứa các bản ghi có 'from' và 'to' tương ứng.
+                // Lọc dữ liệu chỉ chứa các bản ghi có 'from' và 'to' tương ứng.
                 const filteredData = datas.filter((result) => {
                     return result.from === formData.from && result.to === formData.to && result.departure === formData.departure || result.return === formData.return;
                 });
@@ -114,7 +116,6 @@ function Home() {
         const room = RoomList.find(room => room._id === rooms);
         return room ? room.roomNumber : "Unknown";
     }
-
 
     //hàm thêm sản phẩm vào giỏ hàng
     const addToCart = async (productId) => {
@@ -154,7 +155,7 @@ function Home() {
                 setSearchResult(updatedSearchResult);
 
                 // Gửi thông điệp đến server với sự kiện 'updateCartState'
-                socket.emit('updateCartState');
+                // socket.emit('updateCartState');
             }
         } else {
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng
@@ -162,7 +163,7 @@ function Home() {
             // Cập nhật trạng thái của sản phẩm trong searchResult ngay sau khi thêm vào giỏ hàng
             const updatedSearchResult = searchResult.map(item => (item._id === productId ? { ...item, state: true } : item));
             setSearchResult(updatedSearchResult);
-            socket.emit('updateCartState');
+            // socket.emit('updateCartState');
         }
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
@@ -186,7 +187,7 @@ function Home() {
                                     onChange={handleInputChange}
                                     className={cx('form_input')}
                                     placeholder='FROM'
-                                    required
+                                    required={true}
                                 />
 
                             </div>
@@ -202,7 +203,7 @@ function Home() {
                                     onChange={handleInputChange}
                                     className={cx('form_input')}
                                     placeholder='To'
-                                    required
+                                    required={true}
                                 />
                             </div>
                         </div>
@@ -220,7 +221,7 @@ function Home() {
                                         className={cx('form_input')}
                                         placeholder='Departure'
                                         onChange={handleInputChange}
-                                        required
+                                        required={true}
                                     />
                                 </div>
 
@@ -236,7 +237,7 @@ function Home() {
                                         placeholder='Return'
                                         onChange={handleInputChange}
                                         disabled={oneWayChecked}
-                                        required
+
                                     />
 
                                 </div>
@@ -266,12 +267,12 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className={cx('wrapper_form-select3')}>
-                                    <Button primary href='' className={cx('btn')}>Search</Button>
+                                    <Button primary className={cx('btn')}>Search</Button>
                                 </div>
                             </div>
                         </div>
                         <div className={cx('wrapper_form-select4')}>
-                            <Button primary href='' className={cx('btn')}>Search</Button>
+                            <Button primary className={cx('btn')}>Search</Button>
                         </div>
                     </form>
                 </div >
@@ -282,7 +283,7 @@ function Home() {
                 {searchResult.map(
                     (result, index) => (
                         <div key={index} className={cx('results_ticket')}>
-                            <div>{result.img && <img className={cx('image_result')} src={`${apiURL}/${result.img}`} alt="Uploaded" />}</div>
+                            {result.img && <img className={cx('image_result')} src={`${apiURL}/${result.img}`} alt="Uploaded" />}
                             <div className={cx('result_item-title')}>{findtrainID(result.rooms)}</div>
                             <div className={cx('row')}>
 
@@ -297,7 +298,7 @@ function Home() {
                                 <h4 className={cx('title_result')}>return</h4>
                                 <div className={cx('result_item')}>{result.return === "" ? "..." : result.return}</div>
                             </div>
-                            {/* đưa vào tippy */}
+
                             <div className={cx('row')}>
                                 <div className={cx('row_item')}>
                                     <h4 className={cx('title_result')}>timeGodeparture</h4>

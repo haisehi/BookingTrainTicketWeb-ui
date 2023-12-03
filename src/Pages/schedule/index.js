@@ -67,8 +67,8 @@ function Schedule() {
                 </div>
             </div>
             <h2>Lộ trình di chuyển từ Bắc vào Nam bằng tàu hỏa quốc nội</h2>
-            {contentList.map((contentData) => (
-                <div className={cx('content-container')}>
+            {contentList.map((contentData,index) => (
+                <div key={index} className={cx('content-container')}>
                     <div className={cx('box_content')}>
                         <h2>{contentData.title}</h2>
                         <div className={cx('box_content-item')}>

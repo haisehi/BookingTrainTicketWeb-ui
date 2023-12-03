@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 const FooterSection = ({ title, content }) => (
     <div className={cx('footer-section')}>
         <h4>{title}</h4>
-        <p>{content}</p>
+        <div>{content}</div>
     </div>
 );
 
