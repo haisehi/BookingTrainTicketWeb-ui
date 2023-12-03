@@ -106,11 +106,11 @@ function BookingInformation() {
                     <div key={customerData._id} className={cx('inforCus')}>
                         <h2>Customer Information</h2>
                         <div className={cx('inforCus-item')}>
-                            <p><h3>Name:</h3> {customerData.name}</p>
-                            <p><h3>Object:</h3> {customerData.object}</p>
-                            <p><h3>Phone:</h3> {customerData.phone}</p>
-                            <p><h3>Email:</h3> {customerData.email}</p>
-                            <p><h3>booking time:</h3> {customerData.createdAt}</p>
+                            <p>Name: {customerData.name}</p>
+                            <p>Object: {customerData.object}</p>
+                            <p>Phone: {customerData.phone}</p>
+                            <p>Email: {customerData.email}</p>
+                            <p>booking time: {customerData.createdAt}</p>
                         </div>
                         <table border={1}>
                             <thead>
