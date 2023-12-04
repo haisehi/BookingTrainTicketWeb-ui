@@ -129,9 +129,13 @@ function Cart() {
             .catch((error) => console.error(error));
     };
     //hàm này dùng để xem tên của toa theo _id
-    const findRoomID = (rooms) => {
+    const findTrainID = (rooms) => {
         const room = RoomList.find(room => room._id === rooms);
         return room ? room.nameTrain : "Unknown";
+    }
+    const findRoomID = (rooms) => {
+        const room = RoomList.find(room => room._id === rooms);
+        return room ? room.roomNumber : "Unknown";
     }
 
     return (
@@ -142,17 +146,18 @@ function Cart() {
                     <table className={cx('cart-table')}>
                         <thead>
                             <tr>
-                                <th>Image</th>
+                                {/* <th>Image</th> */}
                                 <th>From</th>
                                 <th>To</th>
-                                <th>departure</th>
-                                <th>return</th>
-                                <th>timeGodeparture</th>
-                                <th>timeGoreturn</th>
+                                <th>Departure</th>
+                                <th>Return</th>
+                                <th>Time go departure</th>
+                                <th>Time go return</th>
                                 <th>kind</th>
-                                <th>numberChair</th>
-                                <th>rooms</th>
-                                <th>Quantity</th>
+                                <th>Number chair</th>
+                                <th>Train</th>
+                                <th>Room</th>
+                                {/* <th>Quantity</th> */}
                                 <th>Price</th>
                                 <th>Time</th>
                                 <th>Action</th>
@@ -161,11 +166,11 @@ function Cart() {
                         <tbody>
                             {cartItems.map(item => (
                                 <tr key={item._id} className={cx('cart-item')}>
-                                    <td>
+                                    {/* <td>
                                         {item.img && (
                                             <img src={`${apiURL}/${item.img}`} alt="Uploaded" style={{ height: '50px' }} />
                                         )}
-                                    </td>
+                                    </td> */}
                                     <td>{item.from}</td>
                                     <td>{item.to}</td>
                                     <td>{item.departure}</td>
@@ -174,8 +179,9 @@ function Cart() {
                                     <td>{item.timeGoreturn}</td>
                                     <td>{item.kind}</td>
                                     <td>{item.numberChair}</td>
+                                    <td>{findTrainID(item.rooms)}</td>
                                     <td>{findRoomID(item.rooms)}</td>
-                                    <td>{item.quantity}</td>
+                                    {/* <td>{item.quantity}</td> */}
                                     <td>{item.price * item.quantity} VND</td>
                                     <td>{item.expiration}s</td>
                                     <td>
