@@ -1,13 +1,13 @@
 // Footer.module.scss
 
 .footer {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--white-color);
+    color: var(--black-color);
     padding: 50px 0;
     width: 100%;
     margin: 100px 0 0;
     height: 450px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--gray-color);
   
     .container {
       display: flex;
@@ -68,7 +68,7 @@
               width: 100%;
               padding-left: 10px;
               font-size: 1rem;
-              color: #000000;
+              color: var(--black-color);
   
               @media (min-width: 768px) {
                 width: 70%;
@@ -79,7 +79,7 @@
           .icon-link {
             width: 30%;
             padding-right: 10px;
-            color: #000000;
+            color: var(--black-color);
             font-size: 1.5rem;
             text-decoration: none;
   
@@ -92,10 +92,10 @@
     }
   
     .footer-bottom {
-      background-color: #d0d0d0;
+      background-color: var(--alittle-color);
       padding: 10px 0;
       text-align: center;
-      color: #000000;
+      color: var(--black-color);
       margin: 70px 0 0;
     }
   }

@@ -24,13 +24,10 @@ function Login() {
         loginUserAdmin(newUser, dispatch, navigate)
     }
 
-    const gradientColor = useSpring({
-        background: `linear-gradient(180deg, #a3ffef, #0eb517e8)`,
-    });
 
     return (
         <div className={cx('login-container')}>
-            <animated.form style={{ ...gradientColor }} className={cx("login-form")} onSubmit={handleSubmit}>
+            <form className={cx("login-form")} onSubmit={handleSubmit}>
                 <h2>Login</h2>
                 <label className={cx('login-label')}>User name</label>
                 <input
@@ -52,7 +49,7 @@ function Login() {
                     Login
                 </button>
                 <Link to="/register" className={cx('login-button-link')}><button className={cx('login-button')}>Register</button></Link>
-            </animated.form>
+            </form>
         </div>
     );
 }

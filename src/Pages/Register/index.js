@@ -26,13 +26,9 @@ function Register() {
         registerUser(newUser, dispatch, navigate);
     }
 
-    const gradientColor = useSpring({
-        background: `linear-gradient(180deg, #a3ffef, #0eb517e8)`,
-    });
-
     return (
         <div className={cx('register-container')}>
-            <animated.form style={{ ...gradientColor }} className={cx('register-form')} onSubmit={handleSubmit}>
+            <form  className={cx('register-form')} onSubmit={handleSubmit}>
                 <h2>Register</h2>
                 <label className={cx('register-label')}>User name</label>
                 <input
@@ -59,7 +55,7 @@ function Register() {
                     Register
                 </button>
                 <Link to="/Login" className={cx('login-button-link')}><button className={cx('register-button')} >Login</button></Link>
-            </animated.form>
+            </form>
         </div>
     );
 }

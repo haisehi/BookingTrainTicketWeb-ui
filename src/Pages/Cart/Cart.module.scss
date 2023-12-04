@@ -3,8 +3,8 @@
     max-width: 90%;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--white-color);
+    border: 1px solid var(--gray-color);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
@@ -15,7 +15,7 @@
 
     h2 {
         text-align: center;
-        color: #333;
+        color: var(--alittleGreen-color);
     }
     .image{
         display: flex;
@@ -41,7 +41,7 @@
         text-align: left;
     }
     th {
-        background-color: #4caf50;
+        background-color: var(--alittleGreen-color);
     }
 
     .cart-item {
@@ -50,8 +50,8 @@
         }
         .delete-button {
             padding: 5px 10px;
-            background-color: #ff5050;
-            color: white;
+            background-color: var(--red-color);
+            color: var(--white-color);
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -73,7 +73,7 @@ form {
     label {
         flex: 0 0 100%;
         margin-bottom: 5px;
-        color: #333;
+        color: var(--gray-color);
         @media (max-width: 767px) {
             font-size: 15px;
           }
@@ -82,7 +82,7 @@ form {
     input {
         flex: 1;
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--gray-color);
         border-radius: 4px;
     }
 
@@ -90,8 +90,8 @@ form {
         flex: 0 0 100%;
         margin-top: 10px;
         padding: 10px;
-        background-color: #4CAF50;
-        color: white;
+        background-color: var(--alittleGreen-color);
+        color: var(--white-color);
         border: none;
         border-radius: 4px;
         cursor: pointer;
@@ -101,8 +101,8 @@ form {
 .checkout-button {
     margin-top: 20px;
     padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--alittleGreen-color);
+    color: var(--white-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;

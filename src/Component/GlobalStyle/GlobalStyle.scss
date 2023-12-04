@@ -1,43 +1,61 @@
 @import 'normalize.css';
 
-:root{
+:root {
     // color:
-    --blue-color:#00e384;
+    --green-color:#00e384;
+    --matcha-green-color:rgb(27, 119, 35);
+    --alittleGreen-color:#4caf50;
     --white-color:#ffff;
+    --black-color:#000;
     --bg-form : #8580808f;
+    --bg-form2 : #e3e3e3;
     --bg-btn:linear-gradient(#54b4eb,#2fa4e7 60%,#1d9ce5);
     --border-btn:#00e386ba;
     --btn-header:#068f57;
+    --gray-color:#ccc;
+    --alittle-color:#d1d1d1;
+    --red-color:#ff5050;
+    --twinkle-color:#dddddd;
+    --moreGray-color: #dddddd4d;
+    --alitteBlack-color:#4a4a4a;
+    --yellow-color:yellow;
+    --blackGray-color:#333;
+    --sildeBar-color:#f1f1f1;
+    --fontSidebar-color:#6c6c6c;
+    --blackGreen-color:#6da16767;
     // font
     --font-size-header: 18px;
-    --font-family:'TikTokFont', sans-serif;
-    --font-size:20px;
+    --font-family: 'TikTokFont', sans-serif;
+    --font-size: 20px;
 
     // size
     --height-header: 115px;
 }
 
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-body{
+body {
     font-family: var(--font-family);
     font-size: var(--font-size);
 }
 
-button,input,[tabindex]{
+button,
+input,
+[tabindex] {
     outline: none;
     border: none;
 }
 
-a{
+a {
     color: var(--text-color);
     text-decoration: none;
 }
-li{
+
+li {
     list-style: none;
 }
 
@@ -47,16 +65,19 @@ li{
     src: url('/assets/font/TikTokFont-Bold.woff2');
     font-weight: 700;
 }
+
 @font-face {
     font-family: TikTokFont;
     src: url('/assets/font/TikTokFont-Semibold.woff2');
     font-weight: 600;
 }
+
 @font-face {
     font-family: TikTokFont;
     src: url('/assets/font/TikTokFont-Regular.woff2');
     font-weight: 400;
 }
+
 @font-face {
     font-family: TikTokFont1;
     src: url('/assets/font/TikTokDisplayFont-Bold.woff2');
@@ -68,11 +89,13 @@ html *::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;
 }
+
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(2, 18, 248, 0.342);
+    background-color: var(--green-color);
 }
+
 html *::-webkit-scrollbar-track {
     border-radius: 0;
-    background-color: rgba(155, 169, 228, 0.715);
+    background-color: var(--bg-form);
 }

@@ -5,6 +5,9 @@
   @media (max-width: 767px) {
       margin: 0;
     }
+    h2{
+      text-align: center;
+    }
 }
 
 .swiper-container {
@@ -22,7 +25,7 @@
       margin: 0 0 0 10px;
       font-size: 30px;
       font-weight: 600;
-      background-color: #dddddd4d;
+      background-color: var(--moreGray-color);
       width: 100px;
       text-align: center;
       border-radius: 50px 25px 25px 50px;
@@ -30,7 +33,7 @@
         content: '<';
       }
       &:hover{
-       background-color:rgb(221, 221, 221);
+       background-color:var(--twinkle-color);
        cursor: pointer;
       }
     }
@@ -38,7 +41,7 @@
       margin: 0 0 0 10px;
       font-size: 30px;
       font-weight: 600;
-      background-color: #dddddd4d;
+      background-color: var(--moreGray-color);
       width: 100px;
       text-align: center;
       border-radius: 25px 50px 50px 25px;
@@ -46,7 +49,7 @@
         content: '>';
       }
       &:hover{
-        background-color:rgb(221, 221, 221);
+        background-color:var(--twinkle-color);
         cursor: pointer;
        }
   }
@@ -54,8 +57,8 @@
 
   .swiper-slide {
     margin-top: 25px;
-    background-color: #dddddd49;
-    color: #333;
+    background-color: var(--moreGray-color);
+    color: var(--gray-color);
     font-size: 24px;
     font-weight: bold;
     width: 100%;
@@ -70,7 +73,7 @@
     .swiperImg{
       position: relative;
       width: 100%;
-      background-color: #dddddd;
+      background-color: var(--alittle-color);
       filter: brightness(70%) blur(5px);
     }
     img{
@@ -91,13 +94,14 @@
 .content-container {
   margin: 20px 0;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-color);
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--white-color);
 
   h2 {
     font-size: 28px;
     margin-bottom: 20px;
+    
   }
 
   .box_content {

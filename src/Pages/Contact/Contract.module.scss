@@ -5,7 +5,7 @@
     padding: 20px;
     // border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: var(--white-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
   
@@ -14,7 +14,7 @@
     }
   
     h2 {
-      color: #333;
+      color: var(--alittleGreen-color);
       font-size: 1.5em;
       margin-bottom: 20px;
     }
@@ -22,8 +22,8 @@
     .promotion-message {
         margin-top: 20px;
         padding: 10px;
-        background-color: #4caf50;
-        color: #fff;
+        background-color: var(--alittleGreen-color);
+        color: var(--white-color);
         border-radius: 8px;
         overflow: hidden;
         p {
@@ -51,7 +51,7 @@
     }
     .customer-support {
       h3 {
-        color: #4caf50;
+        color: var(--alittleGreen-color);
       }
     }
 

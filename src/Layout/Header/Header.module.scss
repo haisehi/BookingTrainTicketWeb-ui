@@ -4,11 +4,12 @@
     height: var(--height-header);
     min-height: var(--height-header);
     display: flex;
-    background-color: var(--blue-color);
+    background-color: var(--white-color);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 111;
+    border-bottom: 1px solid var(--black-color);
 
     .menu-toggle {
         display: none;
@@ -27,7 +28,7 @@
         position: absolute;
         top: var(--height-header);
         left: 0;
-        background-color: var(--blue-color);
+        background-color: var(--white-color);
         display: none;
   
         &.active {
@@ -49,7 +50,7 @@
         align-items: center;
         cursor: pointer;
         font-size: 24px;
-        color: var(--white-color);
+        color: var(--black-color);
         padding: 10px;
       }
     }
@@ -99,7 +100,7 @@
         line-height: 15px;
         font-size: var(--font-size-header);
         font-weight: 600;
-        color: var(--white-color);
+        color: var(--black-color);
       }
   }
   

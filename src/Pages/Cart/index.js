@@ -15,7 +15,7 @@ function Cart() {
         name: '', object: '', phone: '', email: '', CMND: '', address: '', paymethod: '', ticket: '', accUser: ''
     });
     const [cartItems, setCartItems] = useState([]);
-    const [countdown, setCountdown] = useState(800); // Thời gian đếm ngược ban đầu, tính bằng giây
+    const [countdown, setCountdown] = useState(300); // Thời gian đếm ngược ban đầu, tính bằng giây
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
     const user = useSelector((state) => state.auth.login.currentUser);
 
