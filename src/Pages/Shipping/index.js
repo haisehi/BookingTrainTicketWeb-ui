@@ -79,7 +79,7 @@ const Shipping = () => {
           color="#00BFFF"
           height={100}
           width={100}
-          timeout={3000} 
+          timeout={3000}
         />
         <p className={cx('loading-text')}>Loading...</p>
       </div>
@@ -122,24 +122,41 @@ const Shipping = () => {
             </tr>
           </thead>
           <tbody>
-            {customer.map((customerData) =>
+            {customer.map((customerData, index) =>
               customerData.ticket.map((ticket) => (
                 <tr key={ticket._id}>
+                  <th className={cx('thMobile')}>{index}</th>
+                  <th className={cx('thMobile')}>From</th>
                   <td>{ticket.from}</td>
+                  <th className={cx('thMobile')}>To</th>
                   <td>{ticket.to}</td>
+                  <th className={cx('thMobile')}>Departure</th>
                   <td>{ticket.departure}</td>
+                  <th className={cx('thMobile')}>Return</th>
                   <td>{ticket.return}</td>
+                  <th className={cx('thMobile')}>Time go departure</th>
                   <td>{ticket.timeGodeparture}</td>
+                  <th className={cx('thMobile')}>Time go return</th>
                   <td>{ticket.timeGoreturn}</td>
+                  <th className={cx('thMobile')}>Ticket Type</th>
                   <td>{ticket.ticketType}</td>
+                  <th className={cx('thMobile')}>Price</th>
                   <td>{ticket.price}</td>
+                  <th className={cx('thMobile')}>Number chair</th>
                   <td>{ticket.numberChair}</td>
+                  <th className={cx('thMobile')}>kind</th>
                   <td>{ticket.kind}</td>
+                  <th className={cx('thMobile')}>Room</th>
                   <td>{findRoomID(ticket.rooms)}</td>
+                  <th className={cx('thMobile')}>Train</th>
                   <td>{findTrainID(ticket.rooms)}</td>
+                  <th className={cx('thMobile')}>Name</th>
                   <td>{customerData.name}</td>
+                  <th className={cx('thMobile')}>Phone</th>
                   <td>{customerData.phone}</td>
+                  <th className={cx('thMobile')}>Address</th>
                   <td>{customerData.address}</td>
+                  <th className={cx('thMobile')}>Time Order</th>
                   <td>{customerData.createdAt}</td>
                 </tr>
               ))

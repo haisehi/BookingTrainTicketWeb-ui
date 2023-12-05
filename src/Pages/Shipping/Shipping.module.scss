@@ -72,7 +72,17 @@
       thead {
           background-color: var(--alittleGreen-color);
           color: var(--white-color);
+          @media (max-width: 767px) {
+                display: none;
+        }
       }
+      .thMobile{
+        display: none;
+        @media (max-width: 767px) {
+          background-color: var(--alittleGreen-color);
+            display: flex;
+    }
+    }
 
       tr:nth-child(even) {
           background-color: var(--sildeBar-color);

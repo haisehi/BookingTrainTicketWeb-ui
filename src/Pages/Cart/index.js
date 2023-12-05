@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 
@@ -15,7 +15,7 @@ function Cart() {
         name: '', object: '', phone: '', email: '', CMND: '', address: '', paymethod: '', ticket: '', accUser: ''
     });
     const [cartItems, setCartItems] = useState([]);
-    const [countdown, setCountdown] = useState(300); // Thời gian đếm ngược ban đầu, tính bằng giây
+    const [countdown, setCountdown] = useState(800); // Thời gian đếm ngược ban đầu, tính bằng giây
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
     const user = useSelector((state) => state.auth.login.currentUser);
 
@@ -164,25 +164,38 @@ function Cart() {
                             </tr>
                         </thead>
                         <tbody>
-                            {cartItems.map(item => (
+                            {cartItems.map((item,index) => (
                                 <tr key={item._id} className={cx('cart-item')}>
                                     {/* <td>
                                         {item.img && (
                                             <img src={`${apiURL}/${item.img}`} alt="Uploaded" style={{ height: '50px' }} />
                                         )}
                                     </td> */}
+                                    <th className={cx('thMobile')}>{index}</th>
+                                    <th className={cx('thMobile')}>From</th>
                                     <td>{item.from}</td>
+                                    <th className={cx('thMobile')}>To</th>
                                     <td>{item.to}</td>
+                                    <th className={cx('thMobile')}>Departure</th>
                                     <td>{item.departure}</td>
+                                    <th className={cx('thMobile')}>Return</th>
                                     <td>{item.return}</td>
+                                    <th className={cx('thMobile')}>Time go departure</th>
                                     <td>{item.timeGodeparture}</td>
+                                    <th className={cx('thMobile')}>Time go return</th>
                                     <td>{item.timeGoreturn}</td>
+                                    <th className={cx('thMobile')}>kind</th>
                                     <td>{item.kind}</td>
+                                    <th className={cx('thMobile')}>Number chair</th>
                                     <td>{item.numberChair}</td>
+                                    <th className={cx('thMobile')}>Train</th>
                                     <td>{findTrainID(item.rooms)}</td>
+                                    <th className={cx('thMobile')}>Room</th>
                                     <td>{findRoomID(item.rooms)}</td>
                                     {/* <td>{item.quantity}</td> */}
+                                    <th className={cx('thMobile')}>Price</th>
                                     <td>{item.price * item.quantity} VND</td>
+                                    <th className={cx('thMobile')}>Time</th>
                                     <td>{item.expiration}s</td>
                                     <td>
                                         <button onClick={() => handleDeleteItem(item._id)} className={cx('delete-button')}>

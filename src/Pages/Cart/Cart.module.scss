@@ -34,6 +34,11 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    @media (max-width: 767px) {
+        th{
+            display: none;
+        }
+      }
 
     th,  td {
         border: 1px solid #ddd;
@@ -45,6 +50,13 @@
     }
 
     .cart-item {
+        .thMobile{
+            display: none;
+            @media (max-width: 767px) {
+              background-color: var(--alittleGreen-color);
+                display: flex;
+        }
+    }
         td {
             padding: 15px;
         }
@@ -73,7 +85,7 @@ form {
     label {
         flex: 0 0 100%;
         margin-bottom: 5px;
-        color: var(--gray-color);
+        color: var(--blackGray-color);
         @media (max-width: 767px) {
             font-size: 15px;
           }
@@ -82,7 +94,7 @@ form {
     input {
         flex: 1;
         padding: 10px;
-        border: 1px solid var(--gray-color);
+        border: 1px solid var(--blackGray-color);
         border-radius: 4px;
     }
 
