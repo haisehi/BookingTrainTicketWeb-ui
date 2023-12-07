@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './Home.module.scss'
 import Button from '../../Component/Button';
 
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSuitcase, faUtensils, faWifi, faChild, faDog, faHeadset, faOtter } from '@fortawesome/free-solid-svg-icons';
@@ -38,6 +39,7 @@ function Home() {
     const [RoomList, setRoomList] = useState([]);  // State để lưu danh sách toa
     const [oneWayChecked, setOneWayChecked] = useState(false); //để theo dõi trạng thái của checkbox "OneWay"
     const [addToCartDisabled, setAddToCartDisabled] = useState(false); //để kiểm soát trạng thái của nút add to cart
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -168,6 +170,12 @@ function Home() {
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
     };
+
+    // Thêm hàm xử lý sự kiện khi nhấn vào thẻ img
+    const handleImgClick = (productId) => {
+        // Chuyển hướng đến trang Products với ID sản phẩm được chọn
+        navigate('/products', { state: { productId } });
+    };
     return (
         <div className={cx('wrapper')} onSubmit={handleSubmit}>
             {/* form */}
@@ -283,10 +291,15 @@ function Home() {
                 {searchResult.map(
                     (result, index) => (
                         <div key={index} className={cx('results_ticket')}>
-                            {result.img && <img className={cx('image_result')} src={`${apiURL}/${result.img}`} alt="Uploaded" />}
+                            {result.img &&
+                                <img
+                                    className={cx('image_result')}
+                                    src={`${apiURL}/${result.img}`}
+                                    alt="Uploaded"
+                                    onClick={() => handleImgClick(result._id)}
+                                />}
                             <div className={cx('result_item-title')}>{findtrainID(result.rooms)}</div>
                             <div className={cx('row')}>
-
                                 <h4 className={cx('title_result1')}>From</h4>
                                 <div className={cx('result_item1')}>{result.from}</div>
                                 <h4 className={cx('title_result1')}>To</h4>
@@ -298,8 +311,7 @@ function Home() {
                                 <h4 className={cx('title_result')}>return</h4>
                                 <div className={cx('result_item')}>{result.return === "" ? "..." : result.return}</div>
                             </div>
-
-                            <div className={cx('row')}>
+                            {/* <div className={cx('row')}>
                                 <div className={cx('row_item')}>
                                     <h4 className={cx('title_result')}>timeGodeparture</h4>
                                     <div className={cx('result_item')}>{result.timeGodeparture} hours</div>
@@ -322,11 +334,9 @@ function Home() {
                             <div className={cx('row')}>
                                 <h4 className={cx('title_result')}>kind</h4>
                                 <div className={cx('result_item')}>{result.kind}</div>
-
                                 <h4 className={cx('title_result')}>Room</h4>
                                 <div className={cx('result_item')}>{findRoomID(result.rooms)}</div>
-
-                            </div>
+                            </div> */}
                             <div className={cx('row')}>
                                 <h4 className={cx('title_result')}>price</h4>
                                 <div className={cx('result_item')}>{result.price} VND</div>

@@ -11,6 +11,7 @@ import Login from '../Pages/Login';
 import Register from '../Pages/Register'
 import Profile from '../Pages/Profile'
 import Shipping from '../Pages/Shipping'
+import Products from '../Pages/Product';
 
 const PublicRoute = [
     { path: config.routes.home, component: Home },
@@ -22,6 +23,7 @@ const PublicRoute = [
     { path: config.routes.register, component: Register },
     { path: config.routes.Profile, component: Profile },
     { path: config.routes.Shipping, component: Shipping },
+    { path: config.routes.products, component: Products },
 
 ]
 

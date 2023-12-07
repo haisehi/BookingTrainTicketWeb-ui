@@ -7,7 +7,8 @@ const routes = {
     Login: '/Login',
     register: '/register',
     Profile: '/Profile',
-    Shipping:'/Shipping'
+    Shipping:'/Shipping',
+    products:'products'
 }
 
 export default routes
