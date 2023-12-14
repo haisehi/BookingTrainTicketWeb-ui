@@ -155,9 +155,6 @@ function Home() {
                 // Cập nhật trạng thái của sản phẩm trong searchResult ngay sau khi thêm vào giỏ hàng
                 const updatedSearchResult = searchResult.map(item => (item._id === productId ? { ...item, state: true } : item));
                 setSearchResult(updatedSearchResult);
-
-                // Gửi thông điệp đến server với sự kiện 'updateCartState'
-                // socket.emit('updateCartState');
             }
         } else {
             // Nếu sản phẩm chưa tồn tại trong giỏ hàng, thêm mới vào giỏ hàng
@@ -165,7 +162,6 @@ function Home() {
             // Cập nhật trạng thái của sản phẩm trong searchResult ngay sau khi thêm vào giỏ hàng
             const updatedSearchResult = searchResult.map(item => (item._id === productId ? { ...item, state: true } : item));
             setSearchResult(updatedSearchResult);
-            // socket.emit('updateCartState');
         }
         // Lưu giỏ hàng vào localStorage
         localStorage.setItem('cart', JSON.stringify(existingCartItem));
